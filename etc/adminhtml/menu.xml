@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Baytalebaa_BrandCatalog::main_menu"
+             title="Brand Catalog Management"
+             module="Baytalebaa_BrandCatalog"
+             sortOrder="10"
+             resource="Baytalebaa_BrandCatalog::main_menu"/>
+
+        <add id="Baytalebaa_BrandCatalog::catalog"
+              title="Catalog" 
+              module="Baytalebaa_BrandCatalog"
+              sortOrder="20" 
+              parent="Baytalebaa_BrandCatalog::main_menu"
+              action="brandcatalog/catalog/index"
+              resource="Baytalebaa_BrandCatalog::catalog"/>
+    </menu>
+</config>
