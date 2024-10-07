@@ -29,7 +29,7 @@ class InstallSchema implements InstallSchemaInterface
 
 		/**
 		 * Creating table baytalebaa_shops
-		 */
+		*/
 		if (!$installer->tableExists('baytalebaa_shops')) {
 			$table = $installer->getConnection()->newTable(
 				$installer->getTable('baytalebaa_shops')
