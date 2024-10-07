@@ -51,6 +51,42 @@ class Save extends \Baytalebaa\Shops\Controller\Adminhtml\Items
                 if (isset($data['image']['value'])){
                     $data['image'] = $data['image']['value'];
                 }
+                // icon
+                if(isset($_FILES['icon']['name']) && $_FILES['icon']['name'] != '') {
+                    try{
+                        $uploaderFactory = $this->uploaderFactory->create(['fileId' => 'icon']);
+                        $uploaderFactory->setAllowedExtensions(['jpg', 'jpeg', 'png']);
+                        $iconAdapter = $this->adapterFactory->create();
+                        $uploaderFactory->addValidateCallback('custom_image_upload',$iconAdapter,'validateUploadFile');
+                        $uploaderFactory->setAllowRenameFiles(true);
+                        $uploaderFactory->setFilesDispersion(true);
+                        $mediaDirectory = $this->filesystem->getDirectoryRead($this->directoryList::MEDIA);
+                        $destinationPath = $mediaDirectory->getAbsolutePath('baytalebaa/shops/icons');
+                        $result = $uploaderFactory->save($destinationPath);
+                        if (!$result) {
+                            throw new LocalizedException(
+                                __('Icon File cannot be saved to path: $1', $destinationPath)
+                            );
+                        }
+                        
+                        $iconPath = 'baytalebaa/shops/icons'.$result['file'];
+                        $data['icon'] = $iconPath;
+                    } catch (\Exception $e) {
+                    }
+                }
+                if(isset($data['icon']['delete']) && $data['icon']['delete'] == 1) {
+                    $mediaDirectory = $this->filesystem->getDirectoryRead($this->directoryList::MEDIA)->getAbsolutePath();
+                    $file = $data['icon']['value'];
+                    $iconPath = $mediaDirectory.$file;
+                    if ($this->_file->isExists($iconPath))  {
+                        $this->_file->deleteFile($iconPath);
+                    }
+                    $data['icon'] = NULL;
+                }
+                if (isset($data['icon']['value'])){
+                    $data['icon'] = $data['icon']['value'];
+                }
+                // end icon
                 $inputFilter = new \Zend_Filter_Input(
                     [],
                     [],

@@ -40,10 +40,10 @@ class InstallSchema implements InstallSchemaInterface
 				['identity' => true, 'unsigned' => true, 'nullable' => false, 'primary' => true],
 				'Entity Id'
 			)->addColumn(
-				'brand_id',
+				'shop_brand_id',
 				\Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
 				null,
-				['nullable' => true, 'unsigned' => true],
+				['unsigned' => true, 'nullable' => false, ],
 				'Shop brand ID'
 			)->addColumn(
 				'title',
@@ -98,7 +98,7 @@ class InstallSchema implements InstallSchemaInterface
 				\Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
 				255,
 				['nullable' => true,'default' => null],
-				'icon'
+				'Icon'
 			)->addColumn(
 				'image',
 				\Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
@@ -114,19 +114,19 @@ class InstallSchema implements InstallSchemaInterface
 			)->addForeignKey(
 				$installer->getFkName(
 					'baytalebaa_shops', 
-					'brand_id', 
-					'mgs_brand', 
-					'brand_id'
+					'shop_brand_id', 
+					'mgs_brand',  // Corrected reference table
+					'brand_id'    // Referencing 'brand_id' in 'mgs_brand'
 				),
-				'brand_id',
-				$installer->getTable('baytalebaa_shops'),
-				'brand_id',
+				'shop_brand_id',                        // Column in baytalebaa_shops
+				$installer->getTable('mgs_brand'),      // Correct table name
+				'brand_id',                             // Correct column in mgs_brand
 				\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
 			)->setComment(
 				'Baytalebaa Shops Table'
 			);
 			$installer->getConnection()->createTable($table);
-		}
+		}		
 		$installer->endSetup();
 	}
 }
