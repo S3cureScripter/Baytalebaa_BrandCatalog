@@ -7,9 +7,9 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Block\Adminhtml\Items\Edit;
+namespace Baytalebaa\Shops\Block\Adminhtml;
 
-class Tabs extends \Magento\Backend\Block\Widget\Tabs
+class Shops extends \Magento\Backend\Block\Widget\Grid\Container
 {
     /**
      * Constructor
@@ -18,9 +18,9 @@ class Tabs extends \Magento\Backend\Block\Widget\Tabs
      */
     protected function _construct()
     {
+        $this->_controller = 'shops';
+        $this->_headerText = __('Shops');
+        $this->_addButtonLabel = __('Add New Shop');
         parent::_construct();
-        $this->setId('baytalebaa_shops_items_edit_tabs');
-        $this->setDestElementId('edit_form');
-        $this->setTitle(__('Item'));
     }
 }

@@ -7,9 +7,9 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Controller\Adminhtml\Items;
+namespace Baytalebaa\Shops\Controller\Adminhtml\Shops;
 
-class Edit extends \Baytalebaa\Shops\Controller\Adminhtml\Items
+class Edit extends \Baytalebaa\Shops\Controller\Adminhtml\Shops
 {
 
     public function execute()
@@ -21,7 +21,7 @@ class Edit extends \Baytalebaa\Shops\Controller\Adminhtml\Items
         if ($id) {
             $model->load($id);
             if (!$model->getId()) {
-                $this->messageManager->addError(__('This item no longer exists.'));
+                $this->messageManager->addError(__('This shop no longer exists.'));
                 $this->_redirect('baytalebaa_shops/*');
                 return;
             }
@@ -31,9 +31,9 @@ class Edit extends \Baytalebaa\Shops\Controller\Adminhtml\Items
         if (!empty($data)) {
             $model->addData($data);
         }
-        $this->_coreRegistry->register('current_baytalebaa_shops_items', $model);
+        $this->_coreRegistry->register('current_baytalebaa_shops_shops', $model);
         $this->_initAction();
-        $this->_view->getLayout()->getBlock('items_items_edit');
+        $this->_view->getLayout()->getBlock('shops_shops_edit');
         $this->_view->renderLayout();
     }
 }

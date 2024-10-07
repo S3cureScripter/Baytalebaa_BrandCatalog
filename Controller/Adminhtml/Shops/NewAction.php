@@ -7,20 +7,13 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Block\Adminhtml;
+namespace Baytalebaa\Shops\Controller\Adminhtml\Shops;
 
-class Items extends \Magento\Backend\Block\Widget\Grid\Container
+class NewAction extends \Baytalebaa\Shops\Controller\Adminhtml\Shops
 {
-    /**
-     * Constructor
-     *
-     * @return void
-     */
-    protected function _construct()
+
+    public function execute()
     {
-        $this->_controller = 'items';
-        $this->_headerText = __('Items');
-        $this->_addButtonLabel = __('Add New Item');
-        parent::_construct();
+        $this->_forward('edit');
     }
 }

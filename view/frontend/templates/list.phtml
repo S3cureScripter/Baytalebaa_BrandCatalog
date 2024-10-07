@@ -30,7 +30,7 @@
                     <td data-th="Date" class="col created_at"><?php echo $data->getCreatedAt(); ?></td>
                     <td data-th="Actions" class="col actions">
                         <?php $id = ($data->getShopsId()) ? $data->getShopsId() : $data['shops_id']; ?>
-                        <!-- "$data->getTesting13Id()" was not working when I generated Vky_Testing13 module. That's why I had to place above line. -->
+                        <!-- "$data->getshoping13Id()" was not working when I generated Vky_shoping13 module. That's why I had to place above line. -->
                         <a href="<?php echo $block->getBaseUrl().'shops/index/view/id/'.$id; ?>" class="action view">
                             <span>View</span>
                         </a>

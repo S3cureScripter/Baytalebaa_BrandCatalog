@@ -7,9 +7,9 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Controller\Adminhtml\Items;
+namespace Baytalebaa\Shops\Controller\Adminhtml\Shops;
 
-class Delete extends \Baytalebaa\Shops\Controller\Adminhtml\Items
+class Delete extends \Baytalebaa\Shops\Controller\Adminhtml\Shops
 {
 
     public function execute()
@@ -27,7 +27,7 @@ class Delete extends \Baytalebaa\Shops\Controller\Adminhtml\Items
                 $this->messageManager->addError($e->getMessage());
             } catch (\Exception $e) {
                 $this->messageManager->addError(
-                    __('We can\'t delete item right now. Please review the log and try again.')
+                    __('We can\'t delete shop right now. Please review the log and try again.')
                 );
                 $this->_objectManager->get('Psr\Log\LoggerInterface')->critical($e);
                 $this->_redirect('baytalebaa_shops/*/edit', ['id' => $this->getRequest()->getParam('id')]);

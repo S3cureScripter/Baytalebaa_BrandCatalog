@@ -16,7 +16,7 @@ use Magento\Framework\Filesystem;
 /**
  * Items controller
  */
-abstract class Items extends \Magento\Backend\App\Action
+abstract class Shops extends \Magento\Backend\App\Action
 {
     /**
      * Core registry
@@ -77,7 +77,7 @@ abstract class Items extends \Magento\Backend\App\Action
     protected function _initAction()
     {
         $this->_view->loadLayout();
-        $this->_setActiveMenu('Baytalebaa_Shops::items')->_addBreadcrumb(__('Items'), __('Items'));
+        $this->_setActiveMenu('Baytalebaa_Shops::shops')->_addBreadcrumb(__('Shops'), __('Shops'));
         return $this;
     }
 
@@ -88,6 +88,6 @@ abstract class Items extends \Magento\Backend\App\Action
      */
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed('Baytalebaa_Shops::items');
+        return $this->_authorization->isAllowed('Baytalebaa_Shops::shops');
     }
 }

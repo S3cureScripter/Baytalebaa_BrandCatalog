@@ -11,7 +11,7 @@ namespace Baytalebaa\Shops\Ui\Component\Listing\Column;
 
 class ShopsActions extends \Magento\Ui\Component\Listing\Columns\Column
 {
-    const URL_PATH_EDIT = 'baytalebaa_shops/items/edit';
+    const URL_PATH_EDIT = 'baytalebaa_shops/shops/edit';
 
     /**
      * URL builder

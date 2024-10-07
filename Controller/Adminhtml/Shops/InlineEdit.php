@@ -7,7 +7,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Controller\Adminhtml\Items;
+namespace Baytalebaa\Shops\Controller\Adminhtml\Shops;
 
 class InlineEdit extends \Magento\Backend\App\Action
 {
@@ -42,7 +42,7 @@ class InlineEdit extends \Magento\Backend\App\Action
                         $model->setData(array_merge($model->getData(), $postItems[$modelid]));
                         $model->save();
                     } catch (\Exception $e) {
-                        $messages[] = "[Mytesting ID: {$modelid}]  {$e->getMessage()}";
+                        $messages[] = "[Myshoping ID: {$modelid}]  {$e->getMessage()}";
                         $error = true;
                     }
                 }

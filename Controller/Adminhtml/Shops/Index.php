@@ -7,12 +7,12 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Controller\Adminhtml\Items;
+namespace Baytalebaa\Shops\Controller\Adminhtml\Shops;
 
-class Index extends \Baytalebaa\Shops\Controller\Adminhtml\Items
+class Index extends \Baytalebaa\Shops\Controller\Adminhtml\Shops
 {
     /**
-     * Items list.
+     * shop list.
      *
      * @return \Magento\Backend\Model\View\Result\Page
      */
@@ -20,9 +20,9 @@ class Index extends \Baytalebaa\Shops\Controller\Adminhtml\Items
     {
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->setActiveMenu('Baytalebaa_Shops::test');
-        $resultPage->getConfig()->getTitle()->prepend(__('Test Items'));
-        $resultPage->addBreadcrumb(__('Test'), __('Test'));
+        $resultPage->setActiveMenu('Baytalebaa_Shops::shop');
+        $resultPage->getConfig()->getTitle()->prepend(__('shop Items'));
+        $resultPage->addBreadcrumb(__('shop'), __('shop'));
         $resultPage->addBreadcrumb(__('Items'), __('Items'));
         return $resultPage;
     }

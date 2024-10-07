@@ -7,7 +7,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Block\Adminhtml\Items\Edit\Tab;
+namespace Baytalebaa\Shops\Block\Adminhtml\Shops\Edit\Tab;
 
 use Magento\Backend\Block\Widget\Form\Generic;
 use Magento\Backend\Block\Widget\Tab\TabInterface;
@@ -69,11 +69,11 @@ class Main extends Generic implements TabInterface
      */
     protected function _prepareForm()
     {
-        $model = $this->_coreRegistry->registry('current_baytalebaa_shops_items');
+        $model = $this->_coreRegistry->registry('current_baytalebaa_shops_shops');
         /** @var \Magento\Framework\Data\Form $form */
         $form = $this->_formFactory->create();
-        $form->setHtmlIdPrefix('item_');
-        $fieldset = $form->addFieldset('base_fieldset', ['legend' => __('Item Information')]);
+        $form->setHtmlIdPrefix('shop_');
+        $fieldset = $form->addFieldset('base_fieldset', ['legend' => __('Shop Information')]);
         if ($model->getId()) {
             $fieldset->addField('shops_id', 'hidden', ['name' => 'shops_id']);
         }
