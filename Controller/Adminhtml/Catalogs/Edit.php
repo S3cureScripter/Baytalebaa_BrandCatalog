@@ -9,7 +9,7 @@
 
 namespace Baytalebaa\Shops\Controller\Adminhtml\Catalogs;
 
-class Edit extends \Baytalebaa\Shops\Controller\Adminhtml\Shops
+class Edit extends \Baytalebaa\Shops\Controller\Adminhtml\Catalogs
 {
 
     public function execute()
@@ -31,7 +31,7 @@ class Edit extends \Baytalebaa\Shops\Controller\Adminhtml\Shops
         if (!empty($data)) {
             $model->addData($data);
         }
-        $this->_coreRegistry->register('current_baytalebaa_shops_shops', $model);
+        $this->_coreRegistry->register('current_baytalebaa_shops_catalogs', $model);
         $this->_initAction();
         $this->_view->getLayout()->getBlock('shops_shops_edit');
         $this->_view->renderLayout();

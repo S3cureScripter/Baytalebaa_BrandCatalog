@@ -7,7 +7,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Block\Adminhtml\Shops\Edit;
+namespace Baytalebaa\Shops\Block\Adminhtml\Catalogs\Edit;
 
 class Form extends \Magento\Backend\Block\Widget\Form\Generic
 {
@@ -19,7 +19,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
     protected function _construct()
     {
         parent::_construct();
-        $this->setId('shops_shops_form');
+        $this->setId('shops_catalogs_form');
         $this->setTitle(__('Shop Information'));
     }
 

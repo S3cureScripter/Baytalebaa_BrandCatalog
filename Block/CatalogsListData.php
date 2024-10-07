@@ -14,7 +14,7 @@ use Baytalebaa\Shops\Model\ShopsFactory;
 /**
  * Shops List block
  */
-class ShopsListData extends \Magento\Framework\View\Element\Template
+class CatalogsListData extends \Magento\Framework\View\Element\Template
 {
     /**
      * @var Shops

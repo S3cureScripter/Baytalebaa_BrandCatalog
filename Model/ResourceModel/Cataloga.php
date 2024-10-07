@@ -16,6 +16,6 @@ class Cataloga extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      */
     protected function _construct()
     {
-        $this->_init('baytalebaa_shops', 'shops_id');   //here "baytalebaa_shops" is table name and "shops_id" is the primary key of custom table
+        $this->_init('Baytalebaa_Shops_Catalog', 'catalog_id');   //here "baytalebaa_shops" is table name and "shops_id" is the primary key of custom table
     }
 }

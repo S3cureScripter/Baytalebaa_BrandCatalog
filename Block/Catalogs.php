@@ -12,7 +12,7 @@ namespace Baytalebaa\Shops\Block;
 /**
  * Shops content block
  */
-class Shops extends \Magento\Framework\View\Element\Template
+class Catalogs extends \Magento\Framework\View\Element\Template
 {
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context

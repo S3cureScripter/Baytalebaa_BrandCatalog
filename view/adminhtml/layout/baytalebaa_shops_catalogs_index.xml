@@ -11,7 +11,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <uiComponent name="baytalebaa_shops_index_listing"/>
+            <uiComponent name="baytalebaa_catalogs_index_listing"/>
         </referenceContainer>
     </body>
 </page>

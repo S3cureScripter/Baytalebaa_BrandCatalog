@@ -15,7 +15,7 @@ use Magento\Cms\Model\Template\FilterProvider;
 /**
  * Shops View block
  */
-class ShopsView extends \Magento\Framework\View\Element\Template
+class CatalogsView extends \Magento\Framework\View\Element\Template
 {
     /**
      * @var Shops

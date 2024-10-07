@@ -7,7 +7,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Block\Adminhtml\Shops;
+namespace Baytalebaa\Shops\Block\Adminhtml\Catalogs;
 
 class Edit extends \Magento\Backend\Block\Widget\Form\Container
 {
@@ -67,11 +67,11 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
      */
     public function getHeaderText()
     {
-        $item = $this->_coreRegistry->registry('current_baytalebaa_shops_shops');
+        $item = $this->_coreRegistry->registry('current_baytalebaa_shops_catalogs');
         if ($item->getId()) {
-            return __("Edit Shop '%1'", $this->escapeHtml($item->getName()));
+            return __("Edit Catalog '%1'", $this->escapeHtml($item->getName()));
         } else {
-            return __('New Shop');
+            return __('New Catalog');
         }
     }
 }

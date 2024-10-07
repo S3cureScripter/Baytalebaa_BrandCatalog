@@ -15,7 +15,7 @@
 	</head>
     <body>
         <referenceContainer name="content">
-            <block class="Baytalebaa\Shops\Block\Shops" name="shops.list" template="shops.phtml">
+            <block class="Baytalebaa\Shops\Block\Catalogs" name="catalogs.list" template="catalogs.phtml">
             </block>
         </referenceContainer>
     </body>

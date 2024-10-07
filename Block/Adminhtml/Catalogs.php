@@ -9,7 +9,7 @@
 
 namespace Baytalebaa\Shops\Block\Adminhtml;
 
-class Shops extends \Magento\Backend\Block\Widget\Grid\Container
+class Catalogs extends \Magento\Backend\Block\Widget\Grid\Container
 {
     /**
      * Constructor
@@ -18,9 +18,9 @@ class Shops extends \Magento\Backend\Block\Widget\Grid\Container
      */
     protected function _construct()
     {
-        $this->_controller = 'shops';
-        $this->_headerText = __('Shops');
-        $this->_addButtonLabel = __('Add New Shop');
+        $this->_controller = 'Catalogs';
+        $this->_headerText = __('Catalogs');
+        $this->_addButtonLabel = __('Add New Catalog');
         parent::_construct();
     }
 }

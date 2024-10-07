@@ -11,13 +11,13 @@ namespace Baytalebaa\Shops\Model;
 
 use Magento\Framework\Model\AbstractModel;
 
-class Shops extends AbstractModel
+class Catalogs extends AbstractModel
 {
     /**
      * Define resource model
      */
     protected function _construct()
     {
-        $this->_init('Baytalebaa\Shops\Model\ResourceModel\Shops');
+        $this->_init('Baytalebaa\Shops\Model\ResourceModel\Catalogs');
     }
 }

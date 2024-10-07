@@ -9,7 +9,7 @@
 
 namespace Baytalebaa\Shops\Controller\Adminhtml\Catalogs;
 
-class Delete extends \Baytalebaa\Shops\Controller\Adminhtml\Shops
+class Delete extends \Baytalebaa\Shops\Controller\Adminhtml\Catalogs
 {
 
     public function execute()

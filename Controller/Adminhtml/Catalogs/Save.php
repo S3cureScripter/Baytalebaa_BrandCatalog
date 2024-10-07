@@ -9,7 +9,7 @@
 
 namespace Baytalebaa\Shops\Controller\Adminhtml\Catalogs;
 
-class Save extends \Baytalebaa\Shops\Controller\Adminhtml\Shops
+class Save extends \Baytalebaa\Shops\Controller\Adminhtml\Catalogs
 {
     public function execute()
     {

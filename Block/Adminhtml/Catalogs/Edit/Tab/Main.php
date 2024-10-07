@@ -7,7 +7,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Block\Adminhtml\Shops\Edit\Tab;
+namespace Baytalebaa\Shops\Block\Adminhtml\Catalogs\Edit\Tab;
 
 use Magento\Backend\Block\Widget\Form\Generic;
 use Magento\Backend\Block\Widget\Tab\TabInterface;
@@ -69,13 +69,13 @@ class Main extends Generic implements TabInterface
      */
     protected function _prepareForm()
     {
-        $model = $this->_coreRegistry->registry('current_baytalebaa_shops_shops');
+        $model = $this->_coreRegistry->registry('current_baytalebaa_shops_catalogs');
         /** @var \Magento\Framework\Data\Form $form */
         $form = $this->_formFactory->create();
         $form->setHtmlIdPrefix('shop_');
         $fieldset = $form->addFieldset('base_fieldset', ['legend' => __('Shop Information')]);
         if ($model->getId()) {
-            $fieldset->addField('shops_id', 'hidden', ['name' => 'shops_id']);
+            $fieldset->addField('catalog_id', 'hidden', ['name' => 'catalog_id']);
         }
         $fieldset->addField(
             'title',
@@ -83,14 +83,9 @@ class Main extends Generic implements TabInterface
             ['name' => 'title', 'label' => __('Title'), 'title' => __('Title'), 'required' => true]
         );
         $fieldset->addField(
-            'shop_brand_id',
+            'Catalog_shop_id',
             'text',
-            ['name' => 'shop_brand_id', 'label' => __('shop brand id'), 'title' => __('shop brand id'), 'required' => true]
-        );
-        $fieldset->addField(
-            'description',
-            'text',
-            ['name' => 'description', 'label' => __('Description'), 'title' => __('Description'), 'required' => true]
+            ['name' => 'Catalog_shop_id', 'label' => __('Catalog shop id'), 'title' => __('Catalog shop id'), 'required' => true]
         );
         $fieldset->addField(
             'image',
@@ -99,16 +94,6 @@ class Main extends Generic implements TabInterface
                 'name' => 'image',
                 'label' => __('Image'),
                 'title' => __('Image'),
-                'required'  => false
-            ]
-        );
-        $fieldset->addField(
-            'icon',
-            'image',
-            [
-                'name' => 'icon',
-                'label' => __('Icon'),
-                'title' => __('Icon'),
                 'required'  => false
             ]
         );
@@ -130,58 +115,6 @@ class Main extends Generic implements TabInterface
                 'wysiwyg' => true
             ]
         );
-        $fieldset->addField(
-            'certifications_and_awards',
-            'editor',
-            [
-                'name' => 'certifications_and_awards',
-                'label' => __('Certifications and Awards'),
-                'title' => __('Certifications and Awards'),
-                'style' => 'height:26em;',
-                'required' => true,
-                'config'    => $this->_wysiwygConfig->getConfig(),
-                'wysiwyg' => true
-            ]
-        );
-        $fieldset->addField(
-            'shop_on',
-            'editor',
-            [
-                'name' => 'shop_on',
-                'label' => __('Shop On Bayt Alebaa'),
-                'title' => __('Shop On Bayt Alebaa'),
-                'style' => 'height:26em;',
-                'required' => true,
-                'config'    => $this->_wysiwygConfig->getConfig(),
-                'wysiwyg' => true
-            ]
-        );
-        $fieldset->addField(
-            'service_provided',
-            'editor',
-            [
-                'name' => 'service_provided',
-                'label' => __('Service Provided'),
-                'title' => __('Service Provided'),
-                'style' => 'height:26em;',
-                'required' => true,
-                'config'    => $this->_wysiwygConfig->getConfig(),
-                'wysiwyg' => true
-            ]
-        );
-        $fieldset->addField(
-            'areas_covered',
-            'editor',
-            [
-                'name' => 'areas_covered',
-                'label' => __('Areas Covered'),
-                'title' => __('Areas Covered'),
-                'style' => 'height:26em;',
-                'required' => true,
-                'config'    => $this->_wysiwygConfig->getConfig(),
-                'wysiwyg' => true
-            ]
-        );        
         $form->setValues($model->getData());
         $this->setForm($form);
         return parent::_prepareForm();

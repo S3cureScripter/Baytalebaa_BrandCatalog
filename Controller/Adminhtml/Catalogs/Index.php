@@ -9,7 +9,7 @@
 
 namespace Baytalebaa\Shops\Controller\Adminhtml\Catalogs;
 
-class Index extends \Baytalebaa\Shops\Controller\Adminhtml\Shops
+class Index extends \Baytalebaa\Shops\Controller\Adminhtml\Catalogs
 {
     /**
      * shop list.

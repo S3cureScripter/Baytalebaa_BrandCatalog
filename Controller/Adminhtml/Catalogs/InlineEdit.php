@@ -37,7 +37,7 @@ class InlineEdit extends \Magento\Backend\App\Action
             } else {
                 foreach (array_keys($postItems) as $modelid) {
                     /** @var \Magento\Cms\Model\Block $block */
-                    $model = $this->_objectManager->create('Baytalebaa\Shops\Model\Shops')->load($modelid);
+                    $model = $this->_objectManager->create('Baytalebaa\Shops\Model\Catalogs')->load($modelid);
                     try {
                         $model->setData(array_merge($model->getData(), $postItems[$modelid]));
                         $model->save();
