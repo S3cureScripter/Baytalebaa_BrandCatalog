@@ -16,7 +16,7 @@ use Magento\Framework\Filesystem;
 /**
  * Items controller
  */
-abstract class SubCatalogs extends \Magento\Backend\App\Action
+abstract class Subcatalogs extends \Magento\Backend\App\Action
 {
     /**
      * Core registry
@@ -77,7 +77,7 @@ abstract class SubCatalogs extends \Magento\Backend\App\Action
     protected function _initAction()
     {
         $this->_view->loadLayout();
-        $this->_setActiveMenu('Baytalebaa_Shops::subCatalogs')->_addBreadcrumb(__('SubCatalogs'), __('SubCatalogs'));
+        $this->_setActiveMenu('Baytalebaa_Shops::subcatalogs')->_addBreadcrumb(__('Subcatalogs'), __('Subcatalogs'));
         return $this;
     }
 
@@ -88,6 +88,6 @@ abstract class SubCatalogs extends \Magento\Backend\App\Action
      */
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed('Baytalebaa_Shops::subCatalogs');
+        return $this->_authorization->isAllowed('Baytalebaa_Shops::subcatalogs');
     }
 }

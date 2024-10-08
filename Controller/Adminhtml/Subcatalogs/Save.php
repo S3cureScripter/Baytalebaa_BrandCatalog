@@ -7,15 +7,15 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Controller\Adminhtml\SubCatalogs;
+namespace Baytalebaa\Shops\Controller\Adminhtml\Subcatalogs;
 
-class Save extends \Baytalebaa\Shops\Controller\Adminhtml\SubCatalogs
+class Save extends \Baytalebaa\Shops\Controller\Adminhtml\Subcatalogs
 {
     public function execute()
     {
         if ($this->getRequest()->getPostValue()) {
             try {
-                $model = $this->_objectManager->create('Baytalebaa\Shops\Model\SubCatalogs');
+                $model = $this->_objectManager->create('Baytalebaa\Shops\Model\Subcatalogs');
                 $data = $this->getRequest()->getPostValue();
                 if(isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
                     try{
@@ -26,7 +26,7 @@ class Save extends \Baytalebaa\Shops\Controller\Adminhtml\SubCatalogs
                         $uploaderFactory->setAllowRenameFiles(true);
                         $uploaderFactory->setFilesDispersion(true);
                         $mediaDirectory = $this->filesystem->getDirectoryRead($this->directoryList::MEDIA);
-                        $destinationPath = $mediaDirectory->getAbsolutePath('baytalebaa/shops/SubCatalogs');
+                        $destinationPath = $mediaDirectory->getAbsolutePath('baytalebaa/shops/Subcatalogs');
                         $result = $uploaderFactory->save($destinationPath);
                         if (!$result) {
                             throw new LocalizedException(
@@ -34,7 +34,7 @@ class Save extends \Baytalebaa\Shops\Controller\Adminhtml\SubCatalogs
                             );
                         }
                         
-                        $imagePath = 'baytalebaa/shops/SubCatalogs'.$result['file'];
+                        $imagePath = 'baytalebaa/shops/Subcatalogs'.$result['file'];
                         $data['image'] = $imagePath;
                     } catch (\Exception $e) {
                     }
@@ -61,14 +61,14 @@ class Save extends \Baytalebaa\Shops\Controller\Adminhtml\SubCatalogs
                 if ($id) {
                     $model->load($id);
                     if ($id != $model->getId()) {
-                        throw new \Magento\Framework\Exception\LocalizedException(__('The wrong SubCatalogs is specified.'));
+                        throw new \Magento\Framework\Exception\LocalizedException(__('The wrong Subcatalogs is specified.'));
                     }
                 }
                 $model->setData($data);
                 $session = $this->_objectManager->get('Magento\Backend\Model\Session');
                 $session->setPageData($model->getData());
                 $model->save();
-                $this->messageManager->addSuccess(__('You saved the SubCatalogs.'));
+                $this->messageManager->addSuccess(__('You saved the Subcatalogs.'));
                 $session->setPageData(false);
                 if ($this->getRequest()->getParam('back')) {
                     $this->_redirect('baytalebaa_shops/*/edit', ['id' => $model->getId()]);
@@ -87,7 +87,7 @@ class Save extends \Baytalebaa\Shops\Controller\Adminhtml\SubCatalogs
                 return;
             } catch (\Exception $e) {
                 $this->messageManager->addError(
-                    __('Something went wrong while saving the SubCatalogs data. Please review the error log.')
+                    __('Something went wrong while saving the Subcatalogs data. Please review the error log.')
                 );
                 $this->_objectManager->get('Psr\Log\LoggerInterface')->critical($e);
                 $this->_objectManager->get('Magento\Backend\Model\Session')->setPageData($data);

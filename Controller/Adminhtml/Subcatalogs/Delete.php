@@ -7,9 +7,9 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Controller\Adminhtml\SubCatalogs;
+namespace Baytalebaa\Shops\Controller\Adminhtml\Subcatalogs;
 
-class Delete extends \Baytalebaa\Shops\Controller\Adminhtml\SubCatalogs
+class Delete extends \Baytalebaa\Shops\Controller\Adminhtml\Subcatalogs
 {
 
     public function execute()
@@ -17,7 +17,7 @@ class Delete extends \Baytalebaa\Shops\Controller\Adminhtml\SubCatalogs
         $id = $this->getRequest()->getParam('id');
         if ($id) {
             try {
-                $model = $this->_objectManager->create('Baytalebaa\Shops\Model\SubCatalogs');
+                $model = $this->_objectManager->create('Baytalebaa\Shops\Model\Subcatalogs');
                 $model->load($id);
                 $model->delete();
                 $this->messageManager->addSuccess(__('You deleted the item.'));
@@ -27,14 +27,14 @@ class Delete extends \Baytalebaa\Shops\Controller\Adminhtml\SubCatalogs
                 $this->messageManager->addError($e->getMessage());
             } catch (\Exception $e) {
                 $this->messageManager->addError(
-                    __('We can\'t delete SubCatalogs right now. Please review the log and try again.')
+                    __('We can\'t delete Subcatalogs right now. Please review the log and try again.')
                 );
                 $this->_objectManager->get('Psr\Log\LoggerInterface')->critical($e);
                 $this->_redirect('baytalebaa_shops/*/edit', ['id' => $this->getRequest()->getParam('id')]);
                 return;
             }
         }
-        $this->messageManager->addError(__('We can\'t find a SubCatalogs to delete.'));
+        $this->messageManager->addError(__('We can\'t find a Subcatalogs to delete.'));
         $this->_redirect('baytalebaa_shops/*/');
     }
 }

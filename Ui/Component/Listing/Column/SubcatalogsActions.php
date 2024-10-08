@@ -9,7 +9,7 @@
 
 namespace Baytalebaa\Shops\Ui\Component\Listing\Column;
 
-class SubCatalogsActions extends \Magento\Ui\Component\Listing\Columns\Column
+class SubcatalogsActions extends \Magento\Ui\Component\Listing\Columns\Column
 {
     const URL_PATH_EDIT = 'baytalebaa_shops/subcatalogs/edit';
 

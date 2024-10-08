@@ -32,7 +32,7 @@ class CatalogsListData extends \Magento\Framework\View\Element\Template
     {
         $this->pageConfig->getTitle()->set(__('Baytalebaa Catalogs Module List Page'));
         
-        if ($this->getShopsCollection()) {
+        if ($this->getCatalogsCollection()) {
             $pager = $this->getLayout()->createBlock(
                 'Magento\Theme\Block\Html\Pager',
                 'baytalebaa.shops.pager'
@@ -40,12 +40,12 @@ class CatalogsListData extends \Magento\Framework\View\Element\Template
                 $this->getShopsCollection()
             );
             $this->setChild('pager', $pager);
-            $this->getShopsCollection()->load();
+            $this->getCatalogsCollection()->load();
         }
         return parent::_prepareLayout();
     }
 
-    public function getShopsCollection()
+    public function getCatalogsCollection()
     {
         $page = ($this->getRequest()->getParam('p'))? $this->getRequest()->getParam('p') : 1;
         $pageSize = ($this->getRequest()->getParam('limit'))? $this->getRequest()->getParam('limit') : 5;

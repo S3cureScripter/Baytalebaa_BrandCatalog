@@ -7,9 +7,9 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Controller\Adminhtml\SubCatalogs;
+namespace Baytalebaa\Shops\Controller\Adminhtml\Subcatalogs;
 
-class NewAction extends \Baytalebaa\Shops\Controller\Adminhtml\SubCatalogs
+class NewAction extends \Baytalebaa\Shops\Controller\Adminhtml\Subcatalogs
 {
 
     public function execute()

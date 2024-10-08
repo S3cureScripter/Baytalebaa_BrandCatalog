@@ -12,16 +12,16 @@
     <update handle="editor"/>
     <body>
         <referenceContainer name="left">
-            <block class="Baytalebaa\Shops\Block\Adminhtml\SubCatalogs\Edit\Tabs" name="baytalebaa_shops_subCatalogs_edit_tabs">
-                <block class="Baytalebaa\Shops\Block\Adminhtml\SubCatalogs\Edit\Tab\Main" name="baytalebaa_shops_subCatalogs_edit_tab_main"/>
+            <block class="Baytalebaa\Shops\Block\Adminhtml\Subcatalogs\Edit\Tabs" name="baytalebaa_shops_subcatalogs_edit_tabs">
+                <block class="Baytalebaa\Shops\Block\Adminhtml\Subcatalogs\Edit\Tab\Main" name="baytalebaa_shops_subcatalogs_edit_tab_main"/>
                 <action method="addTab">
                     <argument name="name" xsi:type="string">main_section</argument>
-                    <argument name="block" xsi:type="string">baytalebaa_shops_subCatalogs_edit_tab_main</argument>
+                    <argument name="block" xsi:type="string">baytalebaa_shops_subcatalogs_edit_tab_main</argument>
                 </action>
             </block>
         </referenceContainer>
         <referenceContainer name="content">
-            <block class="Baytalebaa\Shops\Block\Adminhtml\SubCatalogs\Edit" name="shop_subCatalogs_edit"/>
+            <block class="Baytalebaa\Shops\Block\Adminhtml\Subcatalogs\Edit" name="shop_subcatalogs_edit"/>
         </referenceContainer>
     </body>
 </page>

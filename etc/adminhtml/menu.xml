@@ -25,12 +25,12 @@
              parent="baytalebaa_shops::core" 
              action="baytalebaa_shops/catalogs/" 
              resource="Baytalebaa_Shops::catalogs"/>
-        <add id="Baytalebaa_Shops::subCatalogs" 
-             title="SubCatalogs" 
+        <add id="Baytalebaa_Shops::subcatalogs" 
+             title="Subcatalogs" 
              module="Baytalebaa_Shops" 
              sortOrder="30" 
              parent="baytalebaa_shops::core" 
              action="baytalebaa_shops/subcatalogs/" 
-             resource="Baytalebaa_Shops::subCatalogs"/>
+             resource="Baytalebaa_Shops::subcatalogs"/>
     </menu>
 </config>

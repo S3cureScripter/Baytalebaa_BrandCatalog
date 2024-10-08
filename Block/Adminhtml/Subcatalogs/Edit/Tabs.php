@@ -7,7 +7,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Block\Adminhtml\SubCatalogs\SubCatalogs;
+namespace Baytalebaa\Shops\Block\Adminhtml\Subcatalogs\Edit;
 
 class Tabs extends \Magento\Backend\Block\Widget\Tabs
 {
@@ -19,8 +19,8 @@ class Tabs extends \Magento\Backend\Block\Widget\Tabs
     protected function _construct()
     {
         parent::_construct();
-        $this->setId('baytalebaa_shops_subCatalogs_edit_tabs');
+        $this->setId('baytalebaa_shops_subcatalogs_edit_tabs');
         $this->setDestElementId('edit_form');
-        $this->setTitle(__('SubCatalogs'));
+        $this->setTitle(__('Subcatalogs'));
     }
 }

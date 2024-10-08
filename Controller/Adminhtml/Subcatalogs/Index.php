@@ -7,9 +7,9 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Controller\Adminhtml\SubCatalogs;
+namespace Baytalebaa\Shops\Controller\Adminhtml\Subcatalogs;
 
-class Index extends \Baytalebaa\Shops\Controller\Adminhtml\SubCatalogs
+class Index extends \Baytalebaa\Shops\Controller\Adminhtml\Subcatalogs
 {
     /**
      * shop list.
@@ -19,10 +19,10 @@ class Index extends \Baytalebaa\Shops\Controller\Adminhtml\SubCatalogs
     public function execute()
     {
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
-        $resultPage = $this->resultPageFactory->create();
-        $resultPage->setActiveMenu('Baytalebaa_Shops::subCatalog');
-        $resultPage->getConfig()->getTitle()->prepend(__('subCatalog Items'));
-        $resultPage->addBreadcrumb(__('subCatalog'), __('subCatalog'));
+        $resultPage = $this->resultPageFactory->create();        
+        $resultPage->setActiveMenu('Baytalebaa_Shops::subcatalog');
+        $resultPage->getConfig()->getTitle()->prepend(__('Subcatalogs Items'));
+        $resultPage->addBreadcrumb(__('Subcatalogs'), __('Subcatalogs'));
         $resultPage->addBreadcrumb(__('Items'), __('Items'));
         return $resultPage;
     }

@@ -10,50 +10,50 @@
 namespace Baytalebaa\Shops\Block;
 
 use Magento\Framework\View\Element\Template\Context;
-use Baytalebaa\Shops\Model\SubCatalogsFactory;
+use Baytalebaa\Shops\Model\SubcatalogsFactory;
 /**
- * SubCatalogs List block
+ * Subcatalogs List block
  */
-class SubCatalogsListData extends \Magento\Framework\View\Element\Template
+class SubcatalogsListData extends \Magento\Framework\View\Element\Template
 {
     /**
-     * @var SubCatalogs
+     * @var Subcatalogs
      */
-    protected $_subCatalogs;
+    protected $_subcatalogs;
     public function __construct(
         Context $context,
-        SubCatalogsFactory $subCatalogs
+        SubcatalogsFactory $subcatalogs
     ) {
-        $this->_subCatalogs = $subCatalogs;
+        $this->_subcatalogs = $subcatalogs;
         parent::__construct($context);
     }
 
     public function _prepareLayout()
     {
-        $this->pageConfig->getTitle()->set(__('Baytalebaa SubCatalogs Module List Page'));
+        $this->pageConfig->getTitle()->set(__('Baytalebaa Subcatalogs Module List Page'));
         
         if ($this->getShopsCollection()) {
             $pager = $this->getLayout()->createBlock(
                 'Magento\Theme\Block\Html\Pager',
                 'baytalebaa.shops.pager'
             )->setAvailableLimit(array(5=>5,10=>10,15=>15))->setShowPerPage(true)->setCollection(
-                $this->getShopsCollection()
+                $this->getSubcatalogsCollection()
             );
             $this->setChild('pager', $pager);
-            $this->getShopsCollection()->load();
+            $this->getSubcatalogsCollection()->load();
         }
         return parent::_prepareLayout();
     }
 
-    public function getShopsCollection()
+    public function getSubcatalogsCollection()
     {
         $page = ($this->getRequest()->getParam('p'))? $this->getRequest()->getParam('p') : 1;
         $pageSize = ($this->getRequest()->getParam('limit'))? $this->getRequest()->getParam('limit') : 5;
 
-        $subCatalogs = $this->subCatalogs->create();
-        $collection = $subCatalogs->getCollection();
+        $subcatalogs = $this->subcatalogs->create();
+        $collection = $subcatalogs->getCollection();
         $collection->addFieldToFilter('status','1');
-        //$subCatalogs->setOrder('subcatalog_id','ASC');
+        //$subcatalogs->setOrder('subcatalog_id','ASC');
         $collection->setPageSize($pageSize);
         $collection->setCurPage($page);
 

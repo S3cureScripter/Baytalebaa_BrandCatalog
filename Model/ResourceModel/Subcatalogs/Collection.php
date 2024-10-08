@@ -7,20 +7,19 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Block\Adminhtml;
-
-class SubCatalogs extends \Magento\Backend\Block\Widget\Grid\Container
+namespace Baytalebaa\Shops\Model\ResourceModel\Subcatalogs;
+ 
+class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {
+    protected $_idFieldName = 'subcatalog_id';
     /**
-     * Constructor
-     *
-     * @return void
+     * Define model & resource model
      */
     protected function _construct()
     {
-        $this->_controller = 'subCatalogs';
-        $this->_headerText = __('SubCatalogs');
-        $this->_addButtonLabel = __('Add New SubCatalogs');
-        parent::_construct();
+        $this->_init(
+            'Baytalebaa\Shops\Model\Subcatalogs',
+            'Baytalebaa\Shops\Model\ResourceModel\Subcatalogs'
+        );
     }
 }

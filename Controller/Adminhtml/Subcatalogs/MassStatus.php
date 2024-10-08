@@ -7,15 +7,15 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Controller\Adminhtml\SubCatalogs;
+namespace Baytalebaa\Shops\Controller\Adminhtml\Subcatalogs;
 
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Ui\Component\MassAction\Filter;
-use Baytalebaa\Shops\Model\ResourceModel\SubCatalogs\CollectionFactory;
+use Baytalebaa\Shops\Model\ResourceModel\Subcatalogs\CollectionFactory;
 
-class MassDelete extends \Magento\Backend\App\Action
+class MassStatus extends \Magento\Backend\App\Action
 {
     /**
      * @var Filter
@@ -51,10 +51,10 @@ class MassDelete extends \Magento\Backend\App\Action
         $collectionSize = $collection->getSize();
 
         foreach ($collection as $record) {
-            $record->delete();
+            $record->setStatus($this->getRequest()->getParam('status'))->save();
         }
-
-        $this->messageManager->addSuccess(__('A total of %1 record(s) have been deleted.', $collectionSize));
+        if($this->getRequest()->getParam('status') == 1){$status = 'enabled';}else{$status = 'disabled';}
+        $this->messageManager->addSuccess(__('A total of %1 record(s) have been '.$status, $collectionSize));
 
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);

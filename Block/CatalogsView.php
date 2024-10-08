@@ -43,7 +43,7 @@ class CatalogsView extends \Magento\Framework\View\Element\Template
         $id = $this->getRequest()->getParam('id');
         $catalogs = $this->_catalogs->create();
         $singleData = $catalogs->load($id);
-        if($singleData->getShopsId() || $singleData['catalogs_id'] && $singleData->getStatus() == 1){
+        if($singleData->getCatalogsId() || $singleData['catalogs_id'] && $singleData->getStatus() == 1){
             return $singleData;
         }else{
             return false;
