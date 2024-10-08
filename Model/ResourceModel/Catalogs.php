@@ -9,7 +9,7 @@
 
 namespace Baytalebaa\Shops\Model\ResourceModel;
 
-class Cataloga extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
+class Catalogs extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {
     /**
      * Define main table
