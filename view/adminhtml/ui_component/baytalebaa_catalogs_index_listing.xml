@@ -11,31 +11,31 @@
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">baytalebaa_shops_index_listing.baytalebaa_shops_index_listing_data_source</item>
-            <item name="deps" xsi:type="string">baytalebaa_shops_index_listing.baytalebaa_shops_index_listing_data_source</item>
+            <item name="provider" xsi:type="string">baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing_data_source</item>
+            <item name="deps" xsi:type="string">baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing_data_source</item>
         </item>
-        <item name="spinner" xsi:type="string">baytalebaa_shops_index_listing_columns</item>
+        <item name="spinner" xsi:type="string">baytalebaa_catalogs_index_listing_columns</item>
         <item name="buttons" xsi:type="array">
             <item name="add" xsi:type="array">
                 <item name="name" xsi:type="string">add</item>
-                <item name="label" xsi:type="string" translate="true">Add New Item</item>
+                <item name="label" xsi:type="string" translate="true">Add New Catalog</item>
                 <item name="class" xsi:type="string">primary</item>
                 <item name="url" xsi:type="string">*/*/new</item>
             </item>
         </item>
     </argument>
-    <dataSource name="baytalebaa_shops_index_listing_data_source">
+    <dataSource name="baytalebaa_catalogs_index_listing_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
             <argument name="class" xsi:type="string">BaytalebaaShopsGridDataProvider</argument>
-            <argument name="name" xsi:type="string">baytalebaa_shops_index_listing_data_source</argument>
-            <argument name="primaryFieldName" xsi:type="string">shops_id</argument>
-            <argument name="requestFieldName" xsi:type="string">shops_id</argument>
+            <argument name="name" xsi:type="string">baytalebaa_catalogs_index_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">catalog_id</argument>
+            <argument name="requestFieldName" xsi:type="string">catalog_id</argument>
 			<argument name="data" xsi:type="array">
 				<item name="config" xsi:type="array">
 					<item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
 					<item name="update_url" xsi:type="url" path="mui/index/render"/>
 					<item name="storageConfig" xsi:type="array">
-						<item name="indexField" xsi:type="string">shops_id</item>
+						<item name="indexField" xsi:type="string">catalog_id</item>
 					</item>
 				</item>
 			</argument>
@@ -52,7 +52,7 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="storageConfig" xsi:type="array">
-                        <item name="namespace" xsi:type="string">baytalebaa_shops_index_listing</item>
+                        <item name="namespace" xsi:type="string">baytalebaa_catalogs_index_listing</item>
                     </item>
                 </item>
             </argument>
@@ -61,7 +61,7 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="columnsData" xsi:type="array">
-                        <item name="provider" xsi:type="string">baytalebaa_shops_index_listing.baytalebaa_shops_index_listing.baytalebaa_shops_index_listing_columns</item>
+                        <item name="provider" xsi:type="string">baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing_columns</item>
                     </item>
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/controls/columns</item>
                     <item name="displayArea" xsi:type="string">dataGridActions</item>
@@ -71,17 +71,17 @@
         <exportButton name="export_button">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="selectProvider" xsi:type="string">baytalebaa_shops_index_listing.baytalebaa_shops_index_listing.baytalebaa_shops_index_listing_columns.ids</item>
+                    <item name="selectProvider" xsi:type="string">baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing_columns.ids</item>
                 </item>
             </argument>
         </exportButton>
         <filterSearch name="fulltext">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="provider" xsi:type="string">baytalebaa_shops_index_listing.baytalebaa_shops_index_listing_data_source</item>
-                    <item name="chipsProvider" xsi:type="string">baytalebaa_shops_index_listing.baytalebaa_shops_index_listing.listing_top.listing_filters_chips</item>
+                    <item name="provider" xsi:type="string">baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing_data_source</item>
+                    <item name="chipsProvider" xsi:type="string">baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing.listing_top.listing_filters_chips</item>
                     <item name="storageConfig" xsi:type="array">
-                        <item name="provider" xsi:type="string">baytalebaa_shops_index_listing.baytalebaa_shops_index_listing.listing_top.bookmarks</item>
+                        <item name="provider" xsi:type="string">baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing.listing_top.bookmarks</item>
                         <item name="namespace" xsi:type="string">current.search</item>
                     </item>
                 </item>
@@ -90,9 +90,9 @@
         <filters name="listing_filters">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="columnsProvider" xsi:type="string">baytalebaa_shops_index_listing.baytalebaa_shops_index_listing.baytalebaa_shops_index_listing_columns</item>
+                    <item name="columnsProvider" xsi:type="string">baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing_columns</item>
                     <item name="storageConfig" xsi:type="array">
-                        <item name="provider" xsi:type="string">baytalebaa_shops_index_listing.baytalebaa_shops_index_listing.listing_top.bookmarks</item>
+                        <item name="provider" xsi:type="string">baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing.listing_top.bookmarks</item>
                         <item name="namespace" xsi:type="string">current.filters</item>
                     </item>
                     <item name="templates" xsi:type="array">
@@ -104,9 +104,9 @@
                         </item>
                     </item>
                     <item name="childDefaults" xsi:type="array">
-                        <item name="provider" xsi:type="string">baytalebaa_shops_index_listing.baytalebaa_shops_index_listing.listing_top.listing_filters</item>
+                        <item name="provider" xsi:type="string">baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing.listing_top.listing_filters</item>
                         <item name="imports" xsi:type="array">
-                            <item name="visible" xsi:type="string">baytalebaa_shops_index_listing.baytalebaa_shops_index_listing.baytalebaa_shops_index_listing_columns.${ $.index }:visible</item>
+                            <item name="visible" xsi:type="string">baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing_columns.${ $.index }:visible</item>
                         </item>
                     </item>
                 </item>
@@ -119,7 +119,7 @@
                         <message translate="true">Delete selected items?</message>
                         <title translate="true">Delete items</title>
                     </confirm>
-                    <url path="baytalebaa_shops/shops/massDelete"/>
+                    <url path="baytalebaa_shops/Catalog/massDelete"/>
                     <type>delete</type>
                     <label translate="true">Delete</label>
                 </settings>
@@ -132,14 +132,14 @@
                         <action name="0">
                             <type>enable</type>
                             <label translate="true">Enable</label>
-                            <url path="baytalebaa_shops/shops/massStatus">
+                            <url path="baytalebaa_shops/Catalog/massStatus">
                                 <param name="status">1</param>
                             </url>
                         </action>
                         <action name="1">
                             <type>disable</type>
                             <label translate="true">Disable</label>
-                            <url path="baytalebaa_shops/shops/massStatus">
+                            <url path="baytalebaa_shops/Catalog/massStatus">
                                 <param name="status">0</param>
                             </url>
                         </action>
@@ -151,33 +151,33 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="storageConfig" xsi:type="array">
-                        <item name="provider" xsi:type="string">baytalebaa_shops_index_listing.baytalebaa_shops_index_listing.listing_top.bookmarks</item>
+                        <item name="provider" xsi:type="string">baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing.listing_top.bookmarks</item>
                         <item name="namespace" xsi:type="string">current.paging</item>
                     </item>
-                    <item name="selectProvider" xsi:type="string">baytalebaa_shops_index_listing.baytalebaa_shops_index_listing.baytalebaa_shops_index_listing_columns.ids</item>
+                    <item name="selectProvider" xsi:type="string">baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing_columns.ids</item>
                 </item>
             </argument>
         </paging>
     </container>
-    <columns name="baytalebaa_shops_index_listing_columns">
+    <columns name="baytalebaa_catalogs_index_listing_columns">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                 <item name="storageConfig" xsi:type="array">
-                    <item name="provider" xsi:type="string">baytalebaa_shops_index_listing.baytalebaa_shops_index_listing.listing_top.bookmarks</item>
+                    <item name="provider" xsi:type="string">baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing.listing_top.bookmarks</item>
                     <item name="namespace" xsi:type="string">current</item>
                 </item>
                 <item name="editorConfig" xsi:type="array">
-                    <item name="selectProvider" xsi:type="string">baytalebaa_shops_index_listing.baytalebaa_shops_index_listing.baytalebaa_shops_index_listing_columns.ids</item>
+                    <item name="selectProvider" xsi:type="string">baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing_columns.ids</item>
                     <item name="enabled" xsi:type="boolean">true</item>
-                    <item name="indexField" xsi:type="string">shops_id</item>
+                    <item name="indexField" xsi:type="string">catalog_id</item>
                     <item name="clientConfig" xsi:type="array">
-                        <item name="saveUrl" xsi:type="url" path="baytalebaa_shops/shops/inlineEdit"/>
+                        <item name="saveUrl" xsi:type="url" path="baytalebaa_shops/Catalog/inlineEdit"/>
                         <item name="validateBeforeSave" xsi:type="boolean">false</item>
                     </item>
                 </item>
                 <item name="childDefaults" xsi:type="array">
                     <item name="fieldAction" xsi:type="array">
-                        <item name="provider" xsi:type="string">baytalebaa_shops_index_listing.baytalebaa_shops_index_listing.baytalebaa_shops_index_listing_columns_editor</item>
+                        <item name="provider" xsi:type="string">baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing_columns_editor</item>
                         <item name="target" xsi:type="string">startEdit</item>
                         <item name="params" xsi:type="array">
                             <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
@@ -185,7 +185,7 @@
                         </item>
                     </item>
                     <item name="storageConfig" xsi:type="array">
-                        <item name="provider" xsi:type="string">baytalebaa_shops_index_listing.baytalebaa_shops_index_listing.listing_top.bookmarks</item>
+                        <item name="provider" xsi:type="string">baytalebaa_catalogs_index_listing.baytalebaa_catalogs_index_listing.listing_top.bookmarks</item>
                         <item name="root" xsi:type="string">columns.${ $.index }</item>
                         <item name="namespace" xsi:type="string">current.${ $.storageConfig.root}</item>
                     </item>
@@ -195,17 +195,17 @@
         <selectionsColumn name="ids">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="indexField" xsi:type="string">shops_id</item>
+                    <item name="indexField" xsi:type="string">catalog_id</item>
                 </item>
             </argument>
         </selectionsColumn>
-        <column name="shops_id">
+        <column name="catalog_id">
             <argument name="data" xsi:type="array">
                 <item name="js_config" xsi:type="array">
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
                 </item>
                 <item name="config" xsi:type="array">
-                    <item name="indexField" xsi:type="string">shops_id</item>
+                    <item name="indexField" xsi:type="string">catalog_id</item>
                     <item name="filter" xsi:type="string">textRange</item>
                     <item name="sorting" xsi:type="string">desc</item>
                     <item name="label" xsi:type="string" translate="true">ID</item>
@@ -226,7 +226,7 @@
                 </item>
             </argument>
         </column>
-        <column name="description">
+        <column name="Catalog_shop_id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="editor" xsi:type="array">
@@ -236,21 +236,7 @@
                         </item>
                     </item>
                     <item name="filter" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Description</item>
-                </item>
-            </argument>
-        </column>
-        <column name="shop_brand_id">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="editor" xsi:type="array">
-                        <item name="editorType" xsi:type="string">text</item>
-                        <item name="validation" xsi:type="array">
-                            <item name="required-entry" xsi:type="boolean">true</item>
-                        </item>
-                    </item>
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Brand ID</item>
+                    <item name="label" xsi:type="string" translate="true">Shops ID</item>
                 </item>
             </argument>
         </column>
@@ -261,16 +247,6 @@
                     <item name="sortable" xsi:type="boolean">false</item>
                     <item name="has_preview" xsi:type="string">1</item>                    
                     <item name="label" xsi:type="string" translate="true">Image</item>
-                </item>
-            </argument>
-        </column>
-        <column name="icon" class="Baytalebaa\Shops\Ui\Component\Listing\Column\Thumbnail">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/thumbnail</item>
-                    <item name="sortable" xsi:type="boolean">false</item>
-                    <item name="has_preview" xsi:type="string">1</item>                    
-                    <item name="label" xsi:type="string" translate="true">Brand Icon</item>
                 </item>
             </argument>
         </column>
@@ -296,7 +272,7 @@
         <actionsColumn name="actions" class="Baytalebaa\Shops\Ui\Component\Listing\Column\ShopsActions">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="indexField" xsi:type="string">shops_id</item>
+                    <item name="indexField" xsi:type="string">catalog_id</item>
                     <item name="urlEntityParamName" xsi:type="string">id</item>
                 </item>
             </argument>

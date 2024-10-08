@@ -7,13 +7,13 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Controller\Adminhtml\Catalogs;
+namespace Baytalebaa\Shops\Controller\Adminhtml\SubCatalogs;
 
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Ui\Component\MassAction\Filter;
-use Baytalebaa\Shops\Model\ResourceModel\Catalogs\CollectionFactory;
+use Baytalebaa\Shops\Model\ResourceModel\SubCatalogs\CollectionFactory;
 
 class MassStatus extends \Magento\Backend\App\Action
 {

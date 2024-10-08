@@ -7,20 +7,15 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Block\Adminhtml;
+namespace Baytalebaa\Shops\Model\ResourceModel;
 
-class Catalogs extends \Magento\Backend\Block\Widget\Grid\Container
+class SubCatalogs extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {
     /**
-     * Constructor
-     *
-     * @return void
+     * Define main table
      */
     protected function _construct()
     {
-        $this->_controller = 'catalogs';
-        $this->_headerText = __('Catalogs');
-        $this->_addButtonLabel = __('Add New Catalog');
-        parent::_construct();
+        $this->_init('Baytalebaa_Shops_SubCatalog', 'subcatalog_id');   //here "Baytalebaa_Shops_SubCatalog" is table name and "subcatalog_id" is the primary key of custom table
     }
 }

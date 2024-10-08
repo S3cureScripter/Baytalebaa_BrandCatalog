@@ -13,7 +13,7 @@ use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Ui\Component\MassAction\Filter;
-use Baytalebaa\Shops\Model\ResourceModel\Shops\CollectionFactory;
+use Baytalebaa\Shops\Model\ResourceModel\Catalogs\CollectionFactory;
 
 class MassDelete extends \Magento\Backend\App\Action
 {

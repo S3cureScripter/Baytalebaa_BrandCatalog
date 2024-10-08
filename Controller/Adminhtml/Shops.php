@@ -14,7 +14,7 @@ use Magento\MediaStorage\Model\File\UploaderFactory;
 use Magento\Framework\Image\AdapterFactory;
 use Magento\Framework\Filesystem;
 /**
- * Items controller
+ * Shops controller
  */
 abstract class Shops extends \Magento\Backend\App\Action
 {

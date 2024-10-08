@@ -7,21 +7,21 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Controller\Adminhtml\Catalogs;
+namespace Baytalebaa\Shops\Controller\Adminhtml\SubCatalogs;
 
-class Edit extends \Baytalebaa\Shops\Controller\Adminhtml\Catalogs
+class Edit extends \Baytalebaa\Shops\Controller\Adminhtml\SubCatalogs
 {
 
     public function execute()
     {
         $id = $this->getRequest()->getParam('id');
         
-        $model = $this->_objectManager->create('Baytalebaa\Shops\Model\Catalogs');
+        $model = $this->_objectManager->create('Baytalebaa\Shops\Model\SubCatalogs');
 
         if ($id) {
             $model->load($id);
             if (!$model->getId()) {
-                $this->messageManager->addError(__('This shop no longer exists.'));
+                $this->messageManager->addError(__('This SubCatalogs no longer exists.'));
                 $this->_redirect('baytalebaa_shops/*');
                 return;
             }
@@ -31,9 +31,9 @@ class Edit extends \Baytalebaa\Shops\Controller\Adminhtml\Catalogs
         if (!empty($data)) {
             $model->addData($data);
         }
-        $this->_coreRegistry->register('current_baytalebaa_shops_catalogs', $model);
+        $this->_coreRegistry->register('current_baytalebaa_shops_subCatalogs', $model);
         $this->_initAction();
-        $this->_view->getLayout()->getBlock('shops_catalogs_edit');
+        $this->_view->getLayout()->getBlock('shops_subCatalogs_edit');
         $this->_view->renderLayout();
     }
 }

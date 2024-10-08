@@ -11,6 +11,26 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Backend/etc/menu.xsd">
     <menu>
         <add id="baytalebaa_shops::core" title="Shops" module="Baytalebaa_Shops" sortOrder="90" resource="Baytalebaa_Shops::sample"/>
-        <add id="Baytalebaa_Shops::shop" title="Shops" module="Baytalebaa_Shops" sortOrder="10" parent="baytalebaa_shops::core" action="baytalebaa_shops/shops/" resource="Baytalebaa_Shops::shops"/>
+        <add id="Baytalebaa_Shops::shop" 
+             title="Shops" 
+             module="Baytalebaa_Shops" 
+             sortOrder="10" 
+             parent="baytalebaa_shops::core" 
+             action="baytalebaa_shops/shops/" 
+             resource="Baytalebaa_Shops::shops"/>
+        <add id="Baytalebaa_Shops::catalogs" 
+             title="Catalogs" 
+             module="Baytalebaa_Shops" 
+             sortOrder="20" 
+             parent="baytalebaa_shops::core" 
+             action="baytalebaa_shops/catalogs/" 
+             resource="Baytalebaa_Shops::catalogs"/>
+        <add id="Baytalebaa_Shops::subCatalogs" 
+             title="SubCatalogs" 
+             module="Baytalebaa_Shops" 
+             sortOrder="30" 
+             parent="baytalebaa_shops::core" 
+             action="baytalebaa_shops/subcatalogs/" 
+             resource="Baytalebaa_Shops::subCatalogs"/>
     </menu>
 </config>

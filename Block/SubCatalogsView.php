@@ -10,30 +10,30 @@
 namespace Baytalebaa\Shops\Block;
 
 use Magento\Framework\View\Element\Template\Context;
-use Baytalebaa\Shops\Model\CatalogsFactory;
+use Baytalebaa\Shops\Model\SubCatalogsFactory;
 use Magento\Cms\Model\Template\FilterProvider;
 /**
- * Shops View block
+ * SubCatalogs View block
  */
-class CatalogsView extends \Magento\Framework\View\Element\Template
+class SubCatalogsView extends \Magento\Framework\View\Element\Template
 {
     /**
-     * @var Catalogs
+     * @var subcatalog_id
      */
-    protected $_shops;
+    protected $_subCatalogs;
     public function __construct(
         Context $context,
-        CatalogsFactory $catalogs,
+        SubCatalogsFactory $subCatalogs,
         FilterProvider $filterProvider
     ) {
-        $this->_catalogs = $catalogs;
+        $this->_subCatalogs = $subCatalogs;
         $this->_filterProvider = $filterProvider;
         parent::__construct($context);
     }
 
     public function _prepareLayout()
     {
-        $this->pageConfig->getTitle()->set(__('Baytalebaa Catalogs Module View Page'));
+        $this->pageConfig->getTitle()->set(__('Baytalebaa SubCatalogs Module View Page'));
         
         return parent::_prepareLayout();
     }
@@ -41,9 +41,9 @@ class CatalogsView extends \Magento\Framework\View\Element\Template
     public function getSingleData()
     {
         $id = $this->getRequest()->getParam('id');
-        $catalogs = $this->_catalogs->create();
-        $singleData = $catalogs->load($id);
-        if($singleData->getShopsId() || $singleData['catalogs_id'] && $singleData->getStatus() == 1){
+        $subCatalogs = $this->_subCatalogs->create();
+        $singleData = $subCatalogs->load($id);
+        if($singleData->getShopsId() || $singleData['subcatalog_id'] && $singleData->getStatus() == 1){
             return $singleData;
         }else{
             return false;

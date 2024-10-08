@@ -7,9 +7,9 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Block\Adminhtml;
+namespace Baytalebaa\Shops\Block\Adminhtml\SubCatalogs\SubCatalogs;
 
-class Catalogs extends \Magento\Backend\Block\Widget\Grid\Container
+class Tabs extends \Magento\Backend\Block\Widget\Tabs
 {
     /**
      * Constructor
@@ -18,9 +18,9 @@ class Catalogs extends \Magento\Backend\Block\Widget\Grid\Container
      */
     protected function _construct()
     {
-        $this->_controller = 'catalogs';
-        $this->_headerText = __('Catalogs');
-        $this->_addButtonLabel = __('Add New Catalog');
         parent::_construct();
+        $this->setId('baytalebaa_shops_subCatalogs_edit_tabs');
+        $this->setDestElementId('edit_form');
+        $this->setTitle(__('SubCatalogs'));
     }
 }

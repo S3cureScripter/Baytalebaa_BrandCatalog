@@ -63,11 +63,11 @@ class UpgradeSchema implements \Magento\Framework\Setup\UpgradeSchemaInterface
                     )->addForeignKey(
                         $installer->getFkName(
                             'Baytalebaa_Shops_Catalog', 
-                            'shop_brand_id', 
+                            'Catalog_shop_id', 
                             'baytalebaa_shops',  
                             'shops_id'    // Referencing 'shops_id' in 'baytalebaa_shops'
                         ),
-                        'shop_brand_id',                        // Column in Baytalebaa_Shops_Catalog
+                        'Catalog_shop_id',                        // Column in Baytalebaa_Shops_Catalog
                         $installer->getTable('baytalebaa_shops'),      
                         'shops_id',                             // Correct column in baytalebaa_shops
                         \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE

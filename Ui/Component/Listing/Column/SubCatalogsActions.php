@@ -9,9 +9,9 @@
 
 namespace Baytalebaa\Shops\Ui\Component\Listing\Column;
 
-class CatalogsActions extends \Magento\Ui\Component\Listing\Columns\Column
+class SubCatalogsActions extends \Magento\Ui\Component\Listing\Columns\Column
 {
-    const URL_PATH_EDIT = 'baytalebaa_shops/catalogs/edit';
+    const URL_PATH_EDIT = 'baytalebaa_shops/subcatalogs/edit';
 
     /**
      * URL builder
@@ -57,7 +57,7 @@ class CatalogsActions extends \Magento\Ui\Component\Listing\Columns\Column
                         'href' => $this->_urlBuilder->getUrl(
                             static::URL_PATH_EDIT,
                             [
-                                'id' => $item['catalog_id']
+                                'id' => $item['subcatalog_id']
                             ]
                         ),
                         'label' => __('Edit')

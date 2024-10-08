@@ -12,8 +12,8 @@
     <update handle="editor"/>
     <body>
         <referenceContainer name="left">
-            <block class="Baytalebaa\Shops\Block\Adminhtml\Shops\Edit\Tabs" name="baytalebaa_shops_catalogs_edit_tabs">
-                <block class="Baytalebaa\Shops\Block\Adminhtml\Shops\Edit\Tab\Main" name="baytalebaa_shops_catalogs_edit_tab_main"/>
+            <block class="Baytalebaa\Shops\Block\Adminhtml\Catalogs\Edit\Tabs" name="baytalebaa_shops_catalogs_edit_tabs">
+                <block class="Baytalebaa\Shops\Block\Adminhtml\Catalogs\Edit\Tab\Main" name="baytalebaa_shops_catalogs_edit_tab_main"/>
                 <action method="addTab">
                     <argument name="name" xsi:type="string">main_section</argument>
                     <argument name="block" xsi:type="string">baytalebaa_shops_catalogs_edit_tab_main</argument>
@@ -21,7 +21,7 @@
             </block>
         </referenceContainer>
         <referenceContainer name="content">
-            <block class="Baytalebaa\Shops\Block\Adminhtml\Shops\Edit" name="shop_catalogs_edit"/>
+            <block class="Baytalebaa\Shops\Block\Adminhtml\Catalogs\Edit" name="shop_catalogs_edit"/>
         </referenceContainer>
     </body>
 </page>

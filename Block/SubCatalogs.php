@@ -10,9 +10,9 @@
 namespace Baytalebaa\Shops\Block;
 
 /**
- * Catalogs content block
+ * SubCatalogs content block
  */
-class Catalogs extends \Magento\Framework\View\Element\Template
+class SubCatalogs extends \Magento\Framework\View\Element\Template
 {
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context
@@ -22,7 +22,7 @@ class Catalogs extends \Magento\Framework\View\Element\Template
 
     public function _prepareLayout()
     {
-        $this->pageConfig->getTitle()->set(__('Baytalebaa Catalogs Module'));
+        $this->pageConfig->getTitle()->set(__('Baytalebaa SubCatalogs Module'));
         
         return parent::_prepareLayout();
     }

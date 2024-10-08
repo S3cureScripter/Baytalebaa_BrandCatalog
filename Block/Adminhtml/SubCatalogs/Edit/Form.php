@@ -7,7 +7,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Block\Adminhtml\Catalogs\Edit;
+namespace Baytalebaa\Shops\Block\Adminhtml\SubCatalogs\Edit;
 
 class Form extends \Magento\Backend\Block\Widget\Form\Generic
 {
@@ -19,8 +19,8 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
     protected function _construct()
     {
         parent::_construct();
-        $this->setId('shops_catalogs_form');
-        $this->setTitle(__('Catalogs Information'));
+        $this->setId('shops_subCatalogs_form');
+        $this->setTitle(__('SubCatalogs Information'));
     }
 
     /**
@@ -35,7 +35,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
             [
                 'data' => [
                     'id' => 'edit_form',
-                    'action' => $this->getUrl('baytalebaa_shops/catalogs/save'),
+                    'action' => $this->getUrl('baytalebaa_shops/subcatalogs/save'),
                     'method' => 'post',
                     'enctype' => 'multipart/form-data'
                 ],

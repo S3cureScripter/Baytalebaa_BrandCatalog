@@ -10,27 +10,27 @@
 namespace Baytalebaa\Shops\Block;
 
 use Magento\Framework\View\Element\Template\Context;
-use Baytalebaa\Shops\Model\CatalogsFactory;
+use Baytalebaa\Shops\Model\SubCatalogsFactory;
 /**
- * Shops List block
+ * SubCatalogs List block
  */
-class CatalogsListData extends \Magento\Framework\View\Element\Template
+class SubCatalogsListData extends \Magento\Framework\View\Element\Template
 {
     /**
-     * @var Catalogs
+     * @var SubCatalogs
      */
-    protected $_catalogs;
+    protected $_subCatalogs;
     public function __construct(
         Context $context,
-        CatalogsFactory $catalogs
+        SubCatalogsFactory $subCatalogs
     ) {
-        $this->_catalogs = $catalogs;
+        $this->_subCatalogs = $subCatalogs;
         parent::__construct($context);
     }
 
     public function _prepareLayout()
     {
-        $this->pageConfig->getTitle()->set(__('Baytalebaa Catalogs Module List Page'));
+        $this->pageConfig->getTitle()->set(__('Baytalebaa SubCatalogs Module List Page'));
         
         if ($this->getShopsCollection()) {
             $pager = $this->getLayout()->createBlock(
@@ -50,10 +50,10 @@ class CatalogsListData extends \Magento\Framework\View\Element\Template
         $page = ($this->getRequest()->getParam('p'))? $this->getRequest()->getParam('p') : 1;
         $pageSize = ($this->getRequest()->getParam('limit'))? $this->getRequest()->getParam('limit') : 5;
 
-        $catalogs = $this->_catalogs->create();
-        $collection = $catalogs->getCollection();
+        $subCatalogs = $this->subCatalogs->create();
+        $collection = $subCatalogs->getCollection();
         $collection->addFieldToFilter('status','1');
-        //$shops->setOrder('shops_id','ASC');
+        //$subCatalogs->setOrder('subcatalog_id','ASC');
         $collection->setPageSize($pageSize);
         $collection->setCurPage($page);
 

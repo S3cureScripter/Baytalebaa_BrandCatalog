@@ -9,7 +9,7 @@
 
 namespace Baytalebaa\Shops\Block\Adminhtml;
 
-class Catalogs extends \Magento\Backend\Block\Widget\Grid\Container
+class SubCatalogs extends \Magento\Backend\Block\Widget\Grid\Container
 {
     /**
      * Constructor
@@ -18,9 +18,9 @@ class Catalogs extends \Magento\Backend\Block\Widget\Grid\Container
      */
     protected function _construct()
     {
-        $this->_controller = 'catalogs';
-        $this->_headerText = __('Catalogs');
-        $this->_addButtonLabel = __('Add New Catalog');
+        $this->_controller = 'subCatalogs';
+        $this->_headerText = __('SubCatalogs');
+        $this->_addButtonLabel = __('Add New SubCatalogs');
         parent::_construct();
     }
 }

@@ -11,7 +11,7 @@ namespace Baytalebaa\Shops\Model\ResourceModel\Catalogs;
  
 class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {
-    protected $_idFieldName = 'shops_id';
+    protected $_idFieldName = 'catalog_id';
     /**
      * Define model & resource model
      */
