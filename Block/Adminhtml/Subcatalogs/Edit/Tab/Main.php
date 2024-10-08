@@ -11,20 +11,23 @@ namespace Baytalebaa\Shops\Block\Adminhtml\Subcatalogs\Edit\Tab;
 
 use Magento\Backend\Block\Widget\Form\Generic;
 use Magento\Backend\Block\Widget\Tab\TabInterface;
+use Baytalebaa\Shops\Model\ResourceModel\Catalogs\CollectionFactory;
 
 class Main extends Generic implements TabInterface
 {
     protected $_wysiwygConfig;
  
     public function __construct(
-        \Magento\Backend\Block\Template\Context $context, 
-        \Magento\Framework\Registry $registry, 
-        \Magento\Framework\Data\FormFactory $formFactory,  
-        \Magento\Cms\Model\Wysiwyg\Config $wysiwygConfig, 
+        \Magento\Backend\Block\Template\Context $context,
+        \Magento\Framework\Registry $registry,
+        \Magento\Framework\Data\FormFactory $formFactory,
+        \Magento\Cms\Model\Wysiwyg\Config $wysiwygConfig,
+        CollectionFactory $catalogCollectionFactory, // Inject the Shop CollectionFactory
         array $data = []
     ) 
     {
         $this->_wysiwygConfig = $wysiwygConfig;
+        $this->_catalogCollectionFactory = $catalogCollectionFactory; // Assign CollectionFactory
         parent::__construct($context, $registry, $formFactory, $data);
     }
 
@@ -77,10 +80,17 @@ class Main extends Generic implements TabInterface
         if ($model->getId()) {
             $fieldset->addField('subcatalog_id', 'hidden', ['name' => 'subcatalog_id']);
         }
+        // Modify the Catalog_shop_id to be a select field
         $fieldset->addField(
             'catalog_id',
-            'text',
-            ['name' => 'catalog_id', 'label' => __('Catalog ID'), 'title' => __('Catalog ID'), 'required' => true]
+            'select',
+            [
+                'name' => 'catalog_id',
+                'label' => __('Catalog ID'),
+                'title' => __('Catalog ID'),
+                'required' => true,
+                'values' => $this->_getCatalogOptions()  // Load shop options
+            ]
         );
         $fieldset->addField(
             'title',
@@ -123,5 +133,25 @@ class Main extends Generic implements TabInterface
         $form->setValues($model->getData());
         $this->setForm($form);
         return parent::_prepareForm();
+    }
+
+    /**
+     * Get shop options for the select field
+     *
+     * @return array
+     */
+    protected function _getCatalogOptions()
+    {
+        $options = [];
+        $catalogCollection = $this->_catalogCollectionFactory->create();
+
+        foreach ($catalogCollection as $catalog) {
+            $options[] = [
+                'value' => $catalog->getId(),
+                'label' => $catalog->getTitle()
+            ];
+        }
+
+        return $options;
     }
 }
