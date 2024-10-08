@@ -34,7 +34,7 @@ class Save extends \Baytalebaa\Shops\Controller\Adminhtml\Catalogs
                             );
                         }
                         
-                        $imagePath = 'baytalebaa/shops'.$result['file'];
+                        $imagePath = 'baytalebaa/shops/Catalogs'.$result['file'];
                         $data['image'] = $imagePath;
                     } catch (\Exception $e) {
                     }

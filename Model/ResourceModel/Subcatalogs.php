@@ -9,7 +9,7 @@
 
 namespace Baytalebaa\Shops\Model\ResourceModel;
 
-class SubCatalogs extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
+class Subcatalogs extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {
     /**
      * Define main table

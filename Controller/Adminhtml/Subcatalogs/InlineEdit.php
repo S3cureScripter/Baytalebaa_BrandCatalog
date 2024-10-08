@@ -7,7 +7,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Controller\Adminhtml\SubCatalogs;
+namespace Baytalebaa\Shops\Controller\Adminhtml\Subcatalogs;
 
 class InlineEdit extends \Magento\Backend\App\Action
 {
@@ -37,7 +37,7 @@ class InlineEdit extends \Magento\Backend\App\Action
             } else {
                 foreach (array_keys($postItems) as $modelid) {
                     /** @var \Magento\Cms\Model\Block $block */
-                    $model = $this->_objectManager->create('Baytalebaa\Shops\Model\SubCatalogs')->load($modelid);
+                    $model = $this->_objectManager->create('Baytalebaa\Shops\Model\Subcatalogs')->load($modelid);
                     try {
                         $model->setData(array_merge($model->getData(), $postItems[$modelid]));
                         $model->save();

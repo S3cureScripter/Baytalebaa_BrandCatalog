@@ -95,7 +95,7 @@ class UpgradeSchema implements \Magento\Framework\Setup\UpgradeSchemaInterface
                         \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
                         null,
                         ['unsigned' => true, 'nullable' => false, ],
-                        'Shop ID'
+                        'Catalog ID'
                     )->addColumn(
                         'title',
                         \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,

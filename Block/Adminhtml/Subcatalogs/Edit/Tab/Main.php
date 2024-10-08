@@ -7,7 +7,7 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-namespace Baytalebaa\Shops\Block\Adminhtml\SubCatalogs\Edit\Tab;
+namespace Baytalebaa\Shops\Block\Adminhtml\Subcatalogs\Edit\Tab;
 
 use Magento\Backend\Block\Widget\Form\Generic;
 use Magento\Backend\Block\Widget\Tab\TabInterface;
@@ -33,7 +33,7 @@ class Main extends Generic implements TabInterface
      */
     public function getTabLabel()
     {
-        return __('SubCatalogs Information');
+        return __('Subcatalogs Information');
     }
 
     /**
@@ -41,7 +41,7 @@ class Main extends Generic implements TabInterface
      */
     public function getTabTitle()
     {
-        return __('SubCatalogs Information');
+        return __('Subcatalogs Information');
     }
 
     /**
@@ -69,14 +69,19 @@ class Main extends Generic implements TabInterface
      */
     protected function _prepareForm()
     {
-        $model = $this->_coreRegistry->registry('current_baytalebaa_shops_subCatalogs');
+        $model = $this->_coreRegistry->registry('current_baytalebaa_shops_subcatalogs');
         /** @var \Magento\Framework\Data\Form $form */
         $form = $this->_formFactory->create();
         $form->setHtmlIdPrefix('subcatalogs_');
-        $fieldset = $form->addFieldset('base_fieldset', ['legend' => __('SubCatalogs Information')]);
+        $fieldset = $form->addFieldset('base_fieldset', ['legend' => __('Subcatalogs Information')]);
         if ($model->getId()) {
             $fieldset->addField('subcatalog_id', 'hidden', ['name' => 'subcatalog_id']);
         }
+        $fieldset->addField(
+            'catalog_id',
+            'text',
+            ['name' => 'catalog_id', 'label' => __('Catalog ID'), 'title' => __('Catalog ID'), 'required' => true]
+        );
         $fieldset->addField(
             'title',
             'text',
