@@ -20,4 +20,10 @@ class Shops extends AbstractModel
     {
         $this->_init('Baytalebaa\Shops\Model\ResourceModel\Shops');
     }
+
+    public function getTitle()
+    {
+        return $this->getData('title'); // Adjust if necessary
+    }
+
 }
