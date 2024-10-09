@@ -228,18 +228,37 @@
         </column>
         <column name="Catalog_shop_id">
             <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Baytalebaa\Shops\Model\Source\Shops</item>
                 <item name="config" xsi:type="array">
                     <item name="editor" xsi:type="array">
-                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="editorType" xsi:type="string">select</item>
                         <item name="validation" xsi:type="array">
                             <item name="required-entry" xsi:type="boolean">true</item>
                         </item>
                     </item>
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Shop ID</item>
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="label" xsi:type="string" translate="true">Shops</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
                 </item>
             </argument>
         </column>
+        <!--        <column name="Catalog_shop_id">-->
+        <!--            <argument name="data" xsi:type="array">-->
+        <!--                <item name="config" xsi:type="array">-->
+        <!--                    <item name="editor" xsi:type="array">-->
+        <!--                        <item name="editorType" xsi:type="string">text</item>-->
+        <!--                        <item name="validation" xsi:type="array">-->
+        <!--                            <item name="required-entry" xsi:type="boolean">true</item>-->
+        <!--                        </item>-->
+        <!--                    </item>-->
+        <!--                    <item name="filter" xsi:type="string">text</item>-->
+        <!--                    <item name="label" xsi:type="string" translate="true">Shop ID</item>-->
+        <!--                </item>-->
+        <!--            </argument>-->
+        <!--        </column>-->
         <column name="image" class="Baytalebaa\Shops\Ui\Component\Listing\Column\Thumbnail">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

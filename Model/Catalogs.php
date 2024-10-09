@@ -20,4 +20,9 @@ class Catalogs extends AbstractModel
     {
         $this->_init('Baytalebaa\Shops\Model\ResourceModel\Catalogs');
     }
+
+    public function getTitle()
+    {
+        return $this->getData('title'); // Adjust if necessary
+    }
 }
