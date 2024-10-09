@@ -64,7 +64,7 @@ class Thumbnail extends \Magento\Ui\Component\Listing\Columns\Column
                 }
 
                 // Handle icon
-                if ($item['icon']) {
+                if (isset($item['icon']) && $item['icon']) {
                     $item['icon_src'] = $path . $item['icon'];
                     $item['icon_alt'] = $item['title'] . ' Icon';
                     $item['icon_orig_src'] = $path . $item['icon'];
