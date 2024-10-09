@@ -52,15 +52,26 @@ class Thumbnail extends \Magento\Ui\Component\Listing\Columns\Column
                         \Magento\Framework\UrlInterface::URL_TYPE_MEDIA
                     );
             foreach ($dataSource['data']['items'] as & $item) {
+                // Handle image
                 if ($item['image']) {
-                    $item[$fieldName . '_src'] = $path.$item['image'];
+                    $item[$fieldName . '_src'] = $path . $item['image'];
                     $item[$fieldName . '_alt'] = $item['title'];
-                    $item[$fieldName . '_orig_src'] = $path.$item['image'];
-                }else{
-                    // please place your placeholder image at pub/media/baytalebaa/shops/placeholder/placeholder.jpg
-                    $item[$fieldName . '_src'] = $path.'baytalebaa/shops/placeholder/placeholder.jpg';
+                    $item[$fieldName . '_orig_src'] = $path . $item['image'];
+                } else {
+                    $item[$fieldName . '_src'] = $path . 'baytalebaa/shops/placeholder/placeholder.jpg';
                     $item[$fieldName . '_alt'] = 'Place Holder';
-                    $item[$fieldName . '_orig_src'] = $path.'baytalebaa/shops/placeholder/placeholder.jpg';
+                    $item[$fieldName . '_orig_src'] = $path . 'baytalebaa/shops/placeholder/placeholder.jpg';
+                }
+
+                // Handle icon
+                if (isset($item['icon']) && $item['icon']) {
+                    $item['icon_src'] = $path . $item['icon'];
+                    $item['icon_alt'] = $item['title'] . ' Icon';
+                    $item['icon_orig_src'] = $path . $item['icon'];
+                } else {
+                    $item['icon_src'] = $path . 'baytalebaa/shops/placeholder/placeholder_icon.jpg';
+                    $item['icon_alt'] = 'Icon Place Holder';
+                    $item['icon_orig_src'] = $path . 'baytalebaa/shops/placeholder/placeholder_icon.jpg';
                 }
             }
         }
