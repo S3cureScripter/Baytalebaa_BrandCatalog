@@ -1,0 +1,98 @@
+body {
+    line-height: 1.6;
+    color: black;
+    background-color: white;
+}
+
+/* Catalog Section */
+.catalog-section {
+    margin-left: 8.3%;
+    margin-right: 8.3%;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 18%;
+}
+
+.catalog-item {
+    position: relative;
+    box-shadow: 0px 3px 9px 2px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.catalog-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.catalog-item-title {
+    position: absolute;
+    bottom: 9.5%;
+    left: 13%;
+    color: #fff;
+    font-size: 3rem;
+    font-weight: 300;
+    z-index: 2;
+}
+
+.background-layer {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.73) 8.5%, rgba(0, 0, 0, 0.545) 43.5%, rgba(255, 255, 255, 0) 100%);
+    position: absolute;
+    z-index: 1;
+    width: 74%;
+    height: 100%;
+}
+
+/* Responsive Design */
+
+/* Medium screens (tablets) */
+@media screen and (max-width: 1024px) {
+    .catalog-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10%;
+    }
+
+    .catalog-item-title {
+        font-size: 2.5rem;
+        left: 12%;
+        bottom: 7%;
+    }
+}
+
+/* Small screens (mobiles) */
+@media screen and (max-width: 768px) {
+    .catalog-grid {
+        grid-template-columns: 1fr;
+        grid-gap: 5%;
+    }
+
+    .catalog-item-title {
+        font-size: 2rem;
+        left: 10%;
+        bottom: 9%;
+    }
+
+    .background-layer {
+        width: 100%;
+    }
+}
+
+/* Extra small screens (mobile devices in portrait mode) */
+@media screen and (max-width: 480px) {
+    .catalog-item-title {
+        font-size: 1.5rem;
+        left: 8%;
+        bottom: 4%;
+    }
+
+    .background-layer {
+        width: 100%;
+    }
+}

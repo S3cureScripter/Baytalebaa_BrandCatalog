@@ -30,7 +30,7 @@ class ShopsListData extends \Magento\Framework\View\Element\Template
 
     public function _prepareLayout()
     {
-        $this->pageConfig->getTitle()->set(__('Baytalebaa Shops Module List Page'));
+        // $this->pageConfig->getTitle()->set(__('Baytalebaa Shops Module List Page'));
         
         if ($this->getShopsCollection()) {
             $pager = $this->getLayout()->createBlock(

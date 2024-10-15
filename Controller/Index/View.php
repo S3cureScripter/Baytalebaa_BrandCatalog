@@ -11,23 +11,23 @@ namespace Baytalebaa\Shops\Controller\Index;
 
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Exception\NotFoundException;
-use Baytalebaa\Shops\Block\ShopsView;
+use Baytalebaa\Shops\Block\Catalogs;
 
 class View extends \Magento\Framework\App\Action\Action
 {
-	protected $_shopsview;
+	protected $_catalogsview;
 
 	public function __construct(
         Context $context,
-        ShopsView $shopsview
+        Catalogs $catalogsview
     ) {
-        $this->_shopsview = $shopsview;
+        $this->_catalogsview = $catalogsview;
         parent::__construct($context);
     }
 
 	public function execute()
     {
-    	if(!$this->_shopsview->getSingleData()){
+    	if(!$this->_catalogsview->getSingleData()){
     		throw new NotFoundException(__('Parameter is incorrect.'));
     	}
     	

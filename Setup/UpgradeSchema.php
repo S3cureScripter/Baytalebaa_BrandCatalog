@@ -149,6 +149,32 @@ class UpgradeSchema implements \Magento\Framework\Setup\UpgradeSchemaInterface
                 $installer->getConnection()->createTable($table);
             }	
         }
+
+        // change fk table
+        if (version_compare($context->getVersion(), '1.0.2', '<')) {
+            // Get the connection
+            $connection = $setup->getConnection();
+
+            // Table name
+            $tableName = $setup->getTable('baytalebaa_shops');
+
+            // Remove the existing foreign key
+            $connection->dropForeignKey(
+                $tableName,
+                $setup->getFkName('baytalebaa_shops', 'shop_brand_id', 'mgs_brand', 'brand_id')
+            );
+
+            // Add new foreign key to bayt_catalogs
+            $connection->addForeignKey(
+                $setup->getFkName('baytalebaa_shops', 'shop_brand_id', 'catalog_category_entity', 'entity_id'),
+                $tableName,
+                'shop_brand_id',
+                $setup->getTable('catalog_category_entity'), // New reference table
+                'entity_id',                     // New reference column
+                \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE             // Cascade on delete
+            );
+        }
+
 		$installer->endSetup();
 	}
 }

@@ -10,9 +10,29 @@
 namespace Baytalebaa\Shops\Model;
 
 use Magento\Framework\Model\AbstractModel;
+use Magento\Catalog\Api\CategoryRepositoryInterface;
+use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
+use Magento\Sales\Model\ResourceModel\Report\Bestsellers\CollectionFactory as BestsellersCollectionFactory;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 class Shops extends AbstractModel
 {
+    protected $categoryRepository;
+    protected $productCollectionFactory;
+    protected $bestsellersCollectionFactory;
+    public function __construct(
+        \Magento\Framework\Model\Context $context,
+        \Magento\Framework\Registry $registry,
+        CategoryRepositoryInterface $categoryRepository,
+        ProductCollectionFactory $productCollectionFactory,
+        BestsellersCollectionFactory $bestsellersCollectionFactory,
+        array $data = []
+    ) {
+        $this->categoryRepository = $categoryRepository;
+        $this->productCollectionFactory = $productCollectionFactory;
+        $this->bestsellersCollectionFactory = $bestsellersCollectionFactory;
+        parent::__construct($context, $registry, null, null, $data);
+    }
     /**
      * Define resource model
      */
@@ -21,9 +41,117 @@ class Shops extends AbstractModel
         $this->_init('Baytalebaa\Shops\Model\ResourceModel\Shops');
     }
 
-    public function getTitle()
+    public function getShopCategoryId()
     {
-        return $this->getData('title'); // Adjust if necessary
+        return $this->getData('shop_brand_id');
     }
 
+    public function getTitle()
+    {
+        return $this->getData('title');
+    }
+
+    public function getDescription()
+    {
+        return $this->getData('description');
+    }
+
+    public function getStatus()
+    {
+        return $this->getData('status');
+    }
+
+    public function getContent()
+    {
+        return $this->getData('content');
+    }
+
+    public function getCertificationsAndAwards()
+    {
+        return $this->getData('certifications_and_awards');
+    }
+
+    public function getShopOn()
+    {
+        return $this->getData('shop_on');
+    }
+
+    public function getServiceProvided()
+    {
+        return $this->getData('service_provided');
+    }
+
+    public function getAreasCovered()
+    {
+        return $this->getData('areas_covered');
+    }
+
+    public function getIcon()
+    {
+        return $this->getData('icon');
+    }
+
+    public function getImage()
+    {
+        return $this->getData('image');
+    }
+    // relations logic
+    //-----------------------------------------------    
+    /**
+    * Get subcategory for shops category
+    */
+    public function getSubcategories($categoryId)
+    {
+        try {
+            $category = $this->categoryRepository->get($categoryId);
+            return $category->getChildrenCategories(); // This will get the child categories
+        } catch (NoSuchEntityException $e) {
+            return []; // Return an empty array if the category is not found
+        }
+    }
+    /**
+    * Get new products for the related category
+    */
+    public function getRelatedCategoryNewProducts()
+    {
+        try {
+            $category = $this->categoryRepository->get($this->getShopBrandId());
+            $productCollection = $this->productCollectionFactory->create();
+            $productCollection->addCategoryFilter($category)
+                ->addAttributeToSelect(['name', 'price', 'image'])
+                ->addAttributeToFilter('news_from_date', ['lteq' => date('Y-m-d H:i:s')])
+                ->addAttributeToFilter('news_to_date', ['gteq' => date('Y-m-d H:i:s')]);
+            return $productCollection;
+        } catch (NoSuchEntityException $e) {
+            return null;
+        }
+    }
+
+    /**
+    * Get top-selling products for the related category
+    */
+    public function getRelatedCategoryTopSellingProducts()
+    {
+        try {
+            $category = $this->categoryRepository->get($this->getShopBrandId());
+
+            // Load bestseller product IDs
+            $bestsellers = $this->bestsellersCollectionFactory->create()->setPeriod('month');
+            $bestsellerProductIds = [];
+            foreach ($bestsellers as $item) {
+                $bestsellerProductIds[] = $item->getProductId();
+            }
+
+            // Filter the product collection based on bestseller IDs
+            $productCollection = $this->productCollectionFactory->create();
+            $productCollection->addCategoryFilter($category)
+                ->addAttributeToSelect(['name', 'price', 'image'])
+                ->addIdFilter($bestsellerProductIds);
+
+            return $productCollection;
+        } catch (NoSuchEntityException $e) {
+            return null;
+        }
+    }
+    //-----------------------------------------------
 }

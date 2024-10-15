@@ -1,0 +1,95 @@
+.info-list {
+    margin-top: 10px;
+    padding-left: 0;
+    padding-right: 20px;
+}
+
+@media (max-width: 768px) {
+    .category-section{
+        margin-left: 0%;
+    }
+
+    .category-item {
+        margin-right: 0;
+        margin-left: 10px;
+    }
+}
+
+.best-seller-section .item-details{
+    text-align: left;
+}
+
+.best-seller-section .product-name {
+    text-align: right;
+}
+
+.best-seller-section .price {
+    text-align: right;
+}
+.new-arrivals-section .item-details {
+    text-align: left;
+}
+
+.new-arrivals-section .product-name {
+    text-align: right;
+}
+
+.new-arrivals-section .price {
+    text-align: right;
+}
+
+
+.fas.fa-chevron-left{
+    margin-right: 0;
+    margin-left: 2px;
+    transform: scaleX(-1);
+}
+
+.fas.fa-chevron-right{
+    margin-left: 0;
+    margin-right: 2px;
+    transform: scaleX(-1);
+}
+
+.owl-nav .custom-prev {
+    left: unset;
+    right: 80px;
+}
+
+.owl-nav .custom-next {
+    right: unset;
+    left: 80px;
+}
+
+@media (max-width: 1200px) {
+    .owl-nav .custom-prev {
+        left: unset;
+        right: 40px;
+    }
+    .owl-nav .custom-next {
+        right: unset;
+        left: 40px;
+    }
+}
+
+@media (max-width: 992px) {
+    .owl-nav .custom-prev {
+        left: unset;
+        right: 7px;
+    }
+    .owl-nav .custom-next {
+        right: unset;
+        left: 7px;
+    }
+}
+
+@media (max-width: 768px) {
+    .owl-nav .custom-prev {
+        left: unset;
+        right: -10px;
+    }
+    .owl-nav .custom-next {
+        right: unset;
+        left: -10px;
+    }
+}

@@ -33,14 +33,14 @@ class ShopsView extends \Magento\Framework\View\Element\Template
 
     public function _prepareLayout()
     {
-        $this->pageConfig->getTitle()->set(__('Baytalebaa Shops Module View Page'));
+        // $this->pageConfig->getTitle()->set(__('Baytalebaa Shops Module View Page'));
         
         return parent::_prepareLayout();
     }
 
     public function getSingleData()
     {
-        $id = $this->getRequest()->getParam('id');
+        $id = $this->getRequest()->getParam('catalog');
         $shops = $this->_shops->create();
         $singleData = $shops->load($id);
         if($singleData->getShopsId() || $singleData['shops_id'] && $singleData->getStatus() == 1){

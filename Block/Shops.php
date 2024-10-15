@@ -8,22 +8,51 @@
  */
 
 namespace Baytalebaa\Shops\Block;
-
+use Magento\Framework\View\Element\Template\Context;
+use Baytalebaa\Shops\Model\ShopsFactory;
+use Magento\Cms\Model\Template\FilterProvider;
 /**
  * Shops content block
  */
 class Shops extends \Magento\Framework\View\Element\Template
 {
+    /**
+    * @var Shops
+    */
+    protected $_shops;
+    private $_shopsid = null;
+
     public function __construct(
-        \Magento\Framework\View\Element\Template\Context $context
+        Context $context,
+        ShopsFactory $shops,
+        FilterProvider $filterProvider
     ) {
+        $this->_shops = $shops;
+        $this->_filterProvider = $filterProvider;
         parent::__construct($context);
     }
-
     public function _prepareLayout()
     {
-        $this->pageConfig->getTitle()->set(__('Baytalebaa Shops Module'));
+        // $this->pageConfig->getTitle()->set(__('Baytalebaa Shops Module'));
         
         return parent::_prepareLayout();
+    }
+   
+    public function getSingleData()
+    {
+        $id = $this->getRequest()->getParam('shop');
+        $shops = $this->_shops->create();
+        $singleData = $shops->load($id);
+        if($singleData->getShopsId() || $singleData['shops_id'] && $singleData->getStatus() == 1){
+            $this->_shopsid = $id;
+            return $singleData;
+        }else{
+            return false;
+        }
+    }
+
+    public function getId()
+    {
+        return $this->_shopsid;
     }
 }

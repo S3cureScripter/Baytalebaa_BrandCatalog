@@ -7,6 +7,7 @@ require([
         margin: 14,
         nav: true,
         dots: false,
+        rtl: true,
         navText: [
             '<div class="custom-prev"><i class="fas fa-chevron-left"></i></div>',
             '<div class="custom-next"><i class="fas fa-chevron-right"></i></div>'
@@ -34,6 +35,7 @@ require([
         margin: 14,
         nav: true,
         dots: false,
+        rtl: true,
         navText: [
             '<div class="custom-prev"><i class="fas fa-chevron-left"></i></div>',
             '<div class="custom-next"><i class="fas fa-chevron-right"></i></div>'

@@ -1,5 +1,4 @@
-<?php
-/**
+<?php/**
  * @category   Baytalebaa
  * @package    Baytalebaa_Shops
  * @author     m.ashraf@baytalebaa.com
@@ -7,22 +6,18 @@
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 ?>
-<?php
-    $singleData = $block->getSingleData();
+<?php    $singleData = $block->getSingleData();
 ?>
 <div>
     <h3>Title</h3>
-    <p><?php echo $singleData->getTitle(); ?></p>   
+    <?= $singleData->getTitle(); ?>
 </div>
-<div>
-    <h3>Author</h3>
-    <p><?php echo $singleData->getAuthor(); ?></p>
-</div>
+
 <div>
     <h3>Content</h3>
-    <p><?php echo $this->_filterProvider->getPageFilter()->filter($singleData->getContent()); ?></p>
+    <?=  $this->_filterProvider->getPageFilter()->filter($singleData->getContent()); ?>
 </div>
 <div>
     <h3>Date</h3>
-    <p><?php echo $singleData->getCreatedAt(); ?></p>
+    <?=  $singleData->getCreatedAt(); ?>
 </div>

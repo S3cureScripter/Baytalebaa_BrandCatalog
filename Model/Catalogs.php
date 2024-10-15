@@ -21,8 +21,28 @@ class Catalogs extends AbstractModel
         $this->_init('Baytalebaa\Shops\Model\ResourceModel\Catalogs');
     }
 
+    public function getShopId()
+    {
+        return $this->getData('Catalog_shop_id');
+    }
+
     public function getTitle()
     {
-        return $this->getData('title'); // Adjust if necessary
+        return $this->getData('title');
+    }
+
+    public function getStatus()
+    {
+        return $this->getData('status');
+    }
+
+    public function getContent()
+    {
+        return $this->getData('content');
+    }
+
+    public function getImage()
+    {
+        return $this->getData('image');
     }
 }
