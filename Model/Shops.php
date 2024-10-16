@@ -14,20 +14,26 @@ use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
 use Magento\Sales\Model\ResourceModel\Report\Bestsellers\CollectionFactory as BestsellersCollectionFactory;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Baytalebaa\Shops\Model\ResourceModel\Catalogs\CollectionFactory as CatalogCollectionFactory;
 
 class Shops extends AbstractModel
 {
     protected $categoryRepository;
     protected $productCollectionFactory;
     protected $bestsellersCollectionFactory;
+    protected $catalogCollectionFactory;
+
+    
     public function __construct(
         \Magento\Framework\Model\Context $context,
         \Magento\Framework\Registry $registry,
+        CatalogCollectionFactory $catalogCollectionFactory,
         CategoryRepositoryInterface $categoryRepository,
         ProductCollectionFactory $productCollectionFactory,
         BestsellersCollectionFactory $bestsellersCollectionFactory,
         array $data = []
     ) {
+        $this->catalogCollectionFactory = $catalogCollectionFactory;
         $this->categoryRepository = $categoryRepository;
         $this->productCollectionFactory = $productCollectionFactory;
         $this->bestsellersCollectionFactory = $bestsellersCollectionFactory;
@@ -152,6 +158,18 @@ class Shops extends AbstractModel
         } catch (NoSuchEntityException $e) {
             return null;
         }
+    }
+
+    /**
+    * Get the Shop catalogs
+    */
+    public function getShopCatalogs()
+    {
+        $Catalogs = $this->catalogCollectionFactory->create()
+            ->addFieldToFilter('catalog_id', $this->getId())
+            ->addFieldToFilter('status', 1); // Optional: Filter by status if needed
+
+        return $Catalogs;
     }
     //-----------------------------------------------
 }

@@ -10,12 +10,25 @@
 namespace Baytalebaa\Shops\Model;
 
 use Magento\Framework\Model\AbstractModel;
+use Baytalebaa\Shops\Model\ResourceModel\Subcatalogs\CollectionFactory as SubCatalogCollectionFactory;
 
 class Catalogs extends AbstractModel
 {
+    protected $subCatalogCollectionFactory;
+
+
+    public function __construct(
+        SubCatalogCollectionFactory $subCatalogCollectionFactory,
+        \Magento\Framework\Model\Context $context,
+        \Magento\Framework\Registry $registry,
+        array $data = []
+    ) {
+        $this->subCatalogCollectionFactory = $subCatalogCollectionFactory;
+        parent::__construct($context, $registry, null, null, $data);
+    }
     /**
-     * Define resource model
-     */
+    * Define resource model
+    */
     protected function _construct()
     {
         $this->_init('Baytalebaa\Shops\Model\ResourceModel\Catalogs');
@@ -45,4 +58,22 @@ class Catalogs extends AbstractModel
     {
         return $this->getData('image');
     }
+
+    /**
+    * Define resource relations logic
+    */
+    //-----------------------------------------------
+    // get SubCatalogs form catalog
+    public function getSubCatalogs()
+    {
+        $subCatalogs = $this->subCatalogCollectionFactory->create()
+            ->addFieldToFilter('catalog_id', $this->getId())
+            ->addFieldToFilter('status', 1); // Optional: Filter by status if needed
+
+        return $subCatalogs;
+    }
+    // get shop imaeg
+    // get shop icon
+    //-----------------------------------------------
+
 }
