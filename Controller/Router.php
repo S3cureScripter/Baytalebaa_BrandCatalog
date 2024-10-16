@@ -35,20 +35,20 @@ class Router implements RouterInterface
             $moduleName = $request->getModuleName();
             $controllerName = $request->getControllerName();
             $actionName = $request->getActionName();
-            //echo('<h1>{{--------------------------------------START-------------------------------------}}</h1>');
+            ////echo('<h1>{{--------------------------------------START-------------------------------------}}</h1>');
 
-            echo("<br/>=====================================<br/>");
+            // //echo("<br/>=====================================<br/>");
             
-            echo('<h1>$moduleName:<h2>{{'. $moduleName."}}</h2>");
-            echo('<h1>controllerName:<h2>{{'.$controllerName."}}</h2>");
-            echo('<h1>actionName:</h1><h2>{{'.$actionName."}}</h2>");
-            echo('<h1>($moduleName === shops && $controllerName === index && $actionName === index&& $request->getParam(shop):</h1><h2>{{'.($moduleName === 'shops' && $controllerName === 'index' && $actionName === 'index'&& $request->getParam('shop'))."}}</h2>");
-            echo('<h1>($moduleName === shops && $controllerName === index && $actionName === view:</h1><h2>{{'.($moduleName === 'shops' && $controllerName === 'index' && $actionName === 'view')."}}</h2>");
-            echo('<h1>($moduleName === shops && $controllerName === index && $actionName === view&& $request->getParam(shop):</h1><h2>{{'.($moduleName === 'shops' && $controllerName === 'index' && $actionName === 'view'&& $request->getParam('shop'))."}}</h2>");
-            echo('<h1>($moduleName === shops && $controllerName === index && $actionName === view&& $request->getParam(catalog):</h1><h2>{{'.($moduleName === 'shops' && $controllerName === 'index' && $actionName === 'view'&& $request->getParam('catalog'))."}}</h2>");
-            echo('<h1>($moduleName === shops && $controllerName === index && $actionName === view&& $request->getParam(shop)&& $request->getParam(catalog):</h1><h2>{{'.($moduleName === 'shops' && $controllerName === 'index' && $actionName === 'view'&& $request->getParam('shop')&& $request->getParam('catalog'))."}}</h2>");
+            // //echo('<h1>$moduleName:<h2>{{'. $moduleName."}}</h2>");
+            // //echo('<h1>controllerName:<h2>{{'.$controllerName."}}</h2>");
+            // //echo('<h1>actionName:</h1><h2>{{'.$actionName."}}</h2>");
+            // //echo('<h1>($moduleName === shops && $controllerName === index && $actionName === index&& $request->getParam(shop):</h1><h2>{{'.($moduleName === 'shops' && $controllerName === 'index' && $actionName === 'index'&& $request->getParam('shop'))."}}</h2>");
+            // //echo('<h1>($moduleName === shops && $controllerName === index && $actionName === view:</h1><h2>{{'.($moduleName === 'shops' && $controllerName === 'index' && $actionName === 'view')."}}</h2>");
+            // //echo('<h1>($moduleName === shops && $controllerName === index && $actionName === view&& $request->getParam(shop):</h1><h2>{{'.($moduleName === 'shops' && $controllerName === 'index' && $actionName === 'view'&& $request->getParam('shop'))."}}</h2>");
+            // //echo('<h1>($moduleName === shops && $controllerName === index && $actionName === view&& $request->getParam(catalog):</h1><h2>{{'.($moduleName === 'shops' && $controllerName === 'index' && $actionName === 'view'&& $request->getParam('catalog'))."}}</h2>");
+            // //echo('<h1>($moduleName === shops && $controllerName === index && $actionName === view&& $request->getParam(shop)&& $request->getParam(catalog):</h1><h2>{{'.($moduleName === 'shops' && $controllerName === 'index' && $actionName === 'view'&& $request->getParam('shop')&& $request->getParam('catalog'))."}}</h2>");
 
-            echo("<br/>=====================================<br/>");
+            // //echo("<br/>=====================================<br/>");
   
             // Avoid infinite loop by checking the current route
             if ($moduleName === 'shops' && $controllerName === 'index' && $actionName === 'view'&& $request->getParam('catalog')) {
@@ -63,16 +63,16 @@ class Router implements RouterInterface
             // Get the requested URL path and extract the shop title
             $identifier = trim($request->getPathInfo(), '/');
             $identifierParts = explode('/', $identifier);
-            echo('<h1>$identifierParts:</h1> <h2>{{'.implode(" ",$identifierParts)."}}</h2>");
+            //echo('<h1>$identifierParts:</h1> <h2>{{'.implode(" ",$identifierParts)."}}</h2>");
 
             if (count($identifierParts) > 1 && $identifierParts[0] === 'shops') {
             //     $shopTitle = $identifierParts[1];
     
-            //    //echo('Looking for shops_id: {{' . $shopTitle."}}");
+            //    ////echo('Looking for shops_id: {{' . $shopTitle."}}");
                 
             //     // // Load the shop by title
             //     $shop = $this->shopsFactory->create()->load($shopTitle, 'title');
-            //     //echo('<h1>Load shop:<h2>{{'.$shop->getTitle()."}}</h2>");
+            //     ////echo('<h1>Load shop:<h2>{{'.$shop->getTitle()."}}</h2>");
             //     if ($shop->getId()) {
             //         $request->setModuleName('shops')
             //                 ->setControllerName('index')
