@@ -175,6 +175,54 @@ class UpgradeSchema implements \Magento\Framework\Setup\UpgradeSchemaInterface
             );
         }
 
+        // add slug to shops,catalogs , subcatalogs
+        if (version_compare($context->getVersion(), '1.0.3', '<')) {
+            if (!$installer->tableExists('baytalebaa_shops')) 
+            {
+                $table = $installer->getConnection()->newTable(
+                    $installer->getTable('baytalebaa_shops')
+                    )->addColumn(
+                        'url_slug',
+                        \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                        255,
+                        ['nullable' => true],
+                        'URL Slug'
+                    )->setComment(
+                        'Add Slug Baytalebaa Shops Table'
+                    );
+                $installer->getConnection()->createTable($table);
+            }	
+            if (!$installer->tableExists('Baytalebaa_Shops_Catalog')) 
+            {
+                $table = $installer->getConnection()->newTable(
+                    $installer->getTable('Baytalebaa_Shops_Catalog')
+                    )->addColumn(
+                        'url_slug',
+                        \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                        255,
+                        ['nullable' => true],
+                        'URL Slug'
+                    )->setComment(
+                        'Add Slug Baytalebaa Catalog Table'
+                    );
+                $installer->getConnection()->createTable($table);
+            }	
+            if (!$installer->tableExists('Baytalebaa_Shops_SubCatalog')) 
+            {
+                $table = $installer->getConnection()->newTable(
+                    $installer->getTable('Baytalebaa_Shops_SubCatalog')
+                    )->addColumn(
+                        'url_slug',
+                        \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                        255,
+                        ['nullable' => true],
+                        'URL Slug'
+                    )->setComment(
+                        'Add Slug Baytalebaa SubCatalog Table'
+                    );
+                $installer->getConnection()->createTable($table);
+            }	
+        }
 		$installer->endSetup();
 	}
 }
