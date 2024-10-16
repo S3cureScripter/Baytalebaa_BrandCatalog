@@ -12,19 +12,22 @@ namespace Baytalebaa\Shops\Model;
 use Magento\Framework\Model\AbstractModel;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\UrlInterface;
 
 class Subcatalogs extends AbstractModel
 {
-
     protected $categoryRepository;
+    protected $urlBuilder;
 
     public function __construct(
         \Magento\Framework\Model\Context $context,
         \Magento\Framework\Registry $registry,
         CategoryRepositoryInterface $categoryRepository,
+        UrlInterface $urlBuilder,  // Inject the UrlInterface to get the base URL
         array $data = []
     ) {
         $this->categoryRepository = $categoryRepository;
+        $this->urlBuilder = $urlBuilder;
         parent::__construct($context, $registry, null, null, $data);
     }
 
@@ -36,57 +39,45 @@ class Subcatalogs extends AbstractModel
         $this->_init('Baytalebaa\Shops\Model\ResourceModel\Subcatalogs');
     }
 
-    /**
-     * Get the title of the subcatalog
-     */
     public function getTitle()
     {
         return $this->getData('title');
     }
 
-    /**
-     * Get the contact details of the subcatalog
-     */
     public function getContact()
     {
         return $this->getData('contact');
     }
 
-    /**
-     * Get the image associated with the subcatalog
-     */
     public function getImage()
     {
         return $this->getData('image');
     }
 
-    /**
-     * Get the icon for the related catalog or shop
-     */
-    public function getIcon()
+    public function getImageUrl()
     {
-        return $this->getData('icon');
+        $image = $this->getImage();
+        if ($image) {
+            return $this->urlBuilder->getBaseUrl(['_type' => UrlInterface::URL_TYPE_MEDIA]) . 'subcatalog/' . $image;
+        }
+        return null;
     }
 
-    /**
-     * Get catalog linked to the subcatalog
-     */
+    public function getUrlSlug()
+    {
+        return $this->getData('url_slug');
+    }
+
     public function getCatalog()
     {
-        return $this->getData('catalog');
+        return $this->getData('catalog_id');
     }
 
-    /**
-     * Get the shop associated with the subcatalog
-     */
     public function getShop()
     {
-        return $this->getData('shop');
+        return $this->getData('shop_id');
     }
 
-    /**
-     * Fetch catalog data from category repository
-     */
     public function getCatalogData($catalogId)
     {
         try {
@@ -96,5 +87,4 @@ class Subcatalogs extends AbstractModel
             return [];
         }
     }
-
 }
