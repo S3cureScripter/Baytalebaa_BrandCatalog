@@ -87,7 +87,7 @@ class Router implements RouterInterface
                     $subcatalogSlug = $identifierParts[3] ?? null;
 
                     if ($shopSlug) {
-                        $shop = $this->shopsFactory->create()->load($shopSlug, 'title');
+                        $shop = $this->shopsFactory->create()->load($shopSlug, 'url_slug');
 
                         if ($shop->getId()) {
                             if ($catalogSlug) {
