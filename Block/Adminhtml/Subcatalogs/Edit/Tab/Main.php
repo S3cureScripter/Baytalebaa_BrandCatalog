@@ -117,6 +117,19 @@ class Main extends Generic implements TabInterface
             'select',
             ['name' => 'status', 'label' => __('Status'), 'title' => __('Status'),  'options'   => [0 => 'Disable', 1 => 'Enable'], 'required' => true]
         );
+        // Add the slug field
+        $fieldset->addField(
+            'url_slug',
+            'text',
+            [
+                'name' => 'url_slug',
+                'label' => __('Slug'),
+                'title' => __('Slug'),
+                'required' => true,
+                'class' => 'required-entry',
+                'note' => __('Unique identifier for the subcatalog (lowercase, no spaces)')
+            ]
+        );
         $fieldset->addField(
             'content',
             'editor',

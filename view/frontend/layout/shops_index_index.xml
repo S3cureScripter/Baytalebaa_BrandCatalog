@@ -21,7 +21,7 @@
 	</head>
     <body>
         <referenceContainer name="content">
-            <block class="Baytalebaa\Shops\Block\Shops" name="shops.index" template="shops.phtml">
+            <block class="Baytalebaa\Shops\Block\Subcatalogs" name="shops.index" template="subcatalogs.phtml">
             </block>
         </referenceContainer>
     </body>
