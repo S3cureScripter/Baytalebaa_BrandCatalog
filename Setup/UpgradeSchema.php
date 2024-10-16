@@ -223,6 +223,25 @@ class UpgradeSchema implements \Magento\Framework\Setup\UpgradeSchemaInterface
                 $installer->getConnection()->createTable($table);
             }	
         }
+
+                // add images to subcatalogs
+                if (version_compare($context->getVersion(), '1.0.4', '<')) {
+                    if (!$installer->tableExists('Baytalebaa_Shops_SubCatalog')) 
+                    {
+                        $table = $installer->getConnection()->newTable(
+                            $installer->getTable('Baytalebaa_Shops_SubCatalog')
+                            )->addColumn(
+                                'images',
+                                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                                255,
+                                ['nullable' => true],
+                                'Images'
+                            )->setComment(
+                                'Add Images to Baytalebaa SubCatalog Table'
+                            );
+                        $installer->getConnection()->createTable($table);
+                    }	
+                }
 		$installer->endSetup();
 	}
 }
