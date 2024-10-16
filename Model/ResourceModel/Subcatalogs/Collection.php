@@ -8,8 +8,10 @@
  */
 
 namespace Baytalebaa\Shops\Model\ResourceModel\Subcatalogs;
+
+use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
  
-class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
+class Collection extends AbstractCollection
 {
     protected $_idFieldName = 'subcatalog_id';
     /**

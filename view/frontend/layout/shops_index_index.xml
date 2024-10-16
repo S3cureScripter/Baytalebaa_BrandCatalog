@@ -19,7 +19,7 @@
 	</head>
     <body>
         <referenceContainer name="content">
-            <block class="Baytalebaa\Shops\Block\Shops" name="shops.list" template="shops.phtml">
+            <block class="Baytalebaa\Shops\Block\Subcatalogs" name="shops.list" template="subcatalogs.phtml">
             </block>
         </referenceContainer>
     </body>
