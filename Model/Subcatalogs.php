@@ -10,9 +10,24 @@
 namespace Baytalebaa\Shops\Model;
 
 use Magento\Framework\Model\AbstractModel;
+use Magento\Catalog\Api\CategoryRepositoryInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 class Subcatalogs extends AbstractModel
 {
+
+    protected $categoryRepository;
+
+    public function __construct(
+        \Magento\Framework\Model\Context $context,
+        \Magento\Framework\Registry $registry,
+        CategoryRepositoryInterface $categoryRepository,
+        array $data = []
+    ) {
+        $this->categoryRepository = $categoryRepository;
+        parent::__construct($context, $registry, null, null, $data);
+    }
+
     /**
      * Define resource model
      */
@@ -20,4 +35,66 @@ class Subcatalogs extends AbstractModel
     {
         $this->_init('Baytalebaa\Shops\Model\ResourceModel\Subcatalogs');
     }
+
+    /**
+     * Get the title of the subcatalog
+     */
+    public function getTitle()
+    {
+        return $this->getData('title');
+    }
+
+    /**
+     * Get the contact details of the subcatalog
+     */
+    public function getContact()
+    {
+        return $this->getData('contact');
+    }
+
+    /**
+     * Get the image associated with the subcatalog
+     */
+    public function getImage()
+    {
+        return $this->getData('image');
+    }
+
+    /**
+     * Get the icon for the related catalog or shop
+     */
+    public function getIcon()
+    {
+        return $this->getData('icon');
+    }
+
+    /**
+     * Get catalog linked to the subcatalog
+     */
+    public function getCatalog()
+    {
+        return $this->getData('catalog');
+    }
+
+    /**
+     * Get the shop associated with the subcatalog
+     */
+    public function getShop()
+    {
+        return $this->getData('shop');
+    }
+
+    /**
+     * Fetch catalog data from category repository
+     */
+    public function getCatalogData($catalogId)
+    {
+        try {
+            $catalog = $this->categoryRepository->get($catalogId);
+            return $catalog->getData();
+        } catch (NoSuchEntityException $e) {
+            return [];
+        }
+    }
+
 }

@@ -9,15 +9,37 @@
 
 namespace Baytalebaa\Shops\Block;
 
+use Magento\Framework\View\Element\Template\Context;
+use Baytalebaa\Shops\Model\SubcatalogsFactory;
+use Magento\Framework\View\Element\Template;
+
 /**
  * Subcatalogs content block
  */
-class Subcatalogs extends \Magento\Framework\View\Element\Template
+class Subcatalogs extends Template
 {
+
+    protected $_subcatalogs;
+
     public function __construct(
-        \Magento\Framework\View\Element\Template\Context $context
+        Context $context,
+        SubcatalogsFactory $subcatalogsFactory
     ) {
+        $this->_subcatalogs = $subcatalogsFactory;
         parent::__construct($context);
+    }
+
+    public function getSingleData()
+    {
+        $id = $this->getRequest()->getParam('shop');
+        $subcatalogs = $this->_subcatalogs->create();
+        $singleData = $subcatalogs->load($id);
+        if($singleData->getShopsId() || $singleData['subcatalog_id'] && $singleData->getStatus() == 1){
+
+            return $singleData;
+        }else{
+            return false;
+        }
     }
 
     public function _prepareLayout()
