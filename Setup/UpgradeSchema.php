@@ -175,73 +175,57 @@ class UpgradeSchema implements \Magento\Framework\Setup\UpgradeSchemaInterface
             );
         }
 
-        // add slug to shops,catalogs , subcatalogs
-        if (version_compare($context->getVersion(), '1.0.3', '<')) {
-            if (!$installer->tableExists('baytalebaa_shops')) 
-            {
-                $table = $installer->getConnection()->newTable(
-                    $installer->getTable('baytalebaa_shops')
-                    )->addColumn(
-                        'url_slug',
-                        \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                        255,
-                        ['nullable' => true],
-                        'URL Slug'
-                    )->setComment(
-                        'Add Slug Baytalebaa Shops Table'
-                    );
-                $installer->getConnection()->createTable($table);
-            }	
-            if (!$installer->tableExists('Baytalebaa_Shops_Catalog')) 
-            {
-                $table = $installer->getConnection()->newTable(
-                    $installer->getTable('Baytalebaa_Shops_Catalog')
-                    )->addColumn(
-                        'url_slug',
-                        \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                        255,
-                        ['nullable' => true],
-                        'URL Slug'
-                    )->setComment(
-                        'Add Slug Baytalebaa Catalog Table'
-                    );
-                $installer->getConnection()->createTable($table);
-            }	
-            if (!$installer->tableExists('Baytalebaa_Shops_SubCatalog')) 
-            {
-                $table = $installer->getConnection()->newTable(
-                    $installer->getTable('Baytalebaa_Shops_SubCatalog')
-                    )->addColumn(
-                        'url_slug',
-                        \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                        255,
-                        ['nullable' => true],
-                        'URL Slug'
-                    )->setComment(
-                        'Add Slug Baytalebaa SubCatalog Table'
-                    );
-                $installer->getConnection()->createTable($table);
-            }	
-        }
+        // add update to shops,catalogs , subcatalogs
+        if (version_compare($context->getVersion(), '1.0.6', '<')) {
 
-                // add images to subcatalogs
-                if (version_compare($context->getVersion(), '1.0.4', '<')) {
-                    if (!$installer->tableExists('Baytalebaa_Shops_SubCatalog')) 
-                    {
-                        $table = $installer->getConnection()->newTable(
-                            $installer->getTable('Baytalebaa_Shops_SubCatalog')
-                            )->addColumn(
-                                'images',
-                                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                                255,
-                                ['nullable' => true],
-                                'Images'
-                            )->setComment(
-                                'Add Images to Baytalebaa SubCatalog Table'
-                            );
-                        $installer->getConnection()->createTable($table);
-                    }	
-                }
+            if (!$setup->getConnection()->tableColumnExists($setup->getTable('baytalebaa_shops'), 'url_slug')) {
+                $setup->getConnection()->addColumn(
+                    $setup->getTable('baytalebaa_shops'),
+                    'url_slug',
+                    [
+                        'type' =>  \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                        'nullable' => true,
+                        'comment' => 'URL Slug'
+                    ]
+                );
+            }	
+            
+            if (!$setup->getConnection()->tableColumnExists($setup->getTable('Baytalebaa_Shops_Catalog'), 'url_slug')) {
+                $setup->getConnection()->addColumn(
+                    $setup->getTable('Baytalebaa_Shops_Catalog'),
+                    'url_slug',
+                    [
+                        'type' =>  \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                        'nullable' => true,
+                        'comment' => 'URL Slug'
+                    ]
+                );
+            }	
+            
+            if (!$setup->getConnection()->tableColumnExists($setup->getTable('Baytalebaa_Shops_SubCatalog'), 'url_slug')) {
+                $setup->getConnection()->addColumn(
+                    $setup->getTable('Baytalebaa_Shops_SubCatalog'),
+                    'url_slug',
+                    [
+                        'type' =>  \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                        'nullable' => true,
+                        'comment' => 'URL Slug'
+                    ]
+                );
+            }	
+            
+            if (!$setup->getConnection()->tableColumnExists($setup->getTable('Baytalebaa_Shops_SubCatalog'), 'images')) {
+                $setup->getConnection()->addColumn(
+                    $setup->getTable('Baytalebaa_Shops_SubCatalog'),
+                    'images',
+                    [
+                        'type' =>  \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                        'nullable' => true,
+                        'comment' => 'Catalogs Images'
+                    ]
+                );
+            }		
+        }
 		$installer->endSetup();
 	}
 }
