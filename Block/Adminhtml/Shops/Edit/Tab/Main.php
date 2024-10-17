@@ -83,6 +83,11 @@ class Main extends Generic implements TabInterface
             ['name' => 'title', 'label' => __('Title'), 'title' => __('Title'), 'required' => true]
         );
         $fieldset->addField(
+            'url_slug',
+            'text',
+            ['name' => 'url_slug', 'label' => __('URL Slug'), 'title' => __('URL Slug'), 'required' => true]
+        );
+        $fieldset->addField(
             'shop_brand_id',
             'text',
             ['name' => 'shop_brand_id', 'label' => __('shop brand id'), 'title' => __('shop brand id'), 'required' => true]
