@@ -98,6 +98,25 @@ class Main extends Generic implements TabInterface
             ['name' => 'title', 'label' => __('Title'), 'title' => __('Title'), 'required' => true]
         );
         $fieldset->addField(
+            'url_slug',
+            'text',
+            ['name' => 'url_slug', 'label' => __('URL Slug'), 'title' => __('URL Slug'), 'required' => true]
+        );
+        
+        // $fieldset->addType('ImageMultible', 'Baytalebaa\Shops\Block\Adminhtml\Subcatalogs\Helper\ImageMultible');
+        // $fieldset->addField(
+        //     'images',
+        //     'ImageMultible',
+        //     array(
+        //         'name' => 'images[]', // declare this as array. Otherwise only one image will be uploaded
+        //         'multiple' => 'multiple', // declare input as 'multiple'
+        //         'label' => __('Images'),
+        //         'title' => __('Images'),
+        //         'required' => true,
+        //         'note' => __('Allowed file types: jpg, jpeg, gif, png'),
+        //     )
+        // );
+        $fieldset->addField(
             'related_products',
             'text',
             ['name' => 'related_products', 'label' => __('Related Products'), 'title' => __('Related Products'), 'required' => true]
