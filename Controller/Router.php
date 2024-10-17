@@ -9,20 +9,21 @@ use Magento\Framework\App\ActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\App\RouterInterface;
+use Baytalebaa\Shops\Model\CatalogsFactory as RouterFactory;
 
 class Router implements RouterInterface
 {
     protected $actionFactory;
-    protected $shopsFactory;
+    protected $routerFactory;
     protected $logger;
 
     public function __construct(
         ActionFactory $actionFactory, 
-        \Baytalebaa\Shops\Model\ShopsFactory $shopsFactory, 
+        RouterFactory $routerFactory, 
         \Psr\Log\LoggerInterface $logger
     ) {
         $this->actionFactory = $actionFactory;
-        $this->shopsFactory = $shopsFactory;
+        $this->routerFactory = $routerFactory;
         $this->logger = $logger;
     }
 
@@ -39,14 +40,14 @@ class Router implements RouterInterface
 
             // //echo("<br/>=====================================<br/>");
             
-            // //echo('<h1>$moduleName:<h2>{{'. $moduleName."}}</h2>");
-            // //echo('<h1>controllerName:<h2>{{'.$controllerName."}}</h2>");
-            // //echo('<h1>actionName:</h1><h2>{{'.$actionName."}}</h2>");
-            // //echo('<h1>($moduleName === shops && $controllerName === index && $actionName === index&& $request->getParam(shop):</h1><h2>{{'.($moduleName === 'shops' && $controllerName === 'index' && $actionName === 'index'&& $request->getParam('shop'))."}}</h2>");
-            // //echo('<h1>($moduleName === shops && $controllerName === index && $actionName === view:</h1><h2>{{'.($moduleName === 'shops' && $controllerName === 'index' && $actionName === 'view')."}}</h2>");
-            // //echo('<h1>($moduleName === shops && $controllerName === index && $actionName === view&& $request->getParam(shop):</h1><h2>{{'.($moduleName === 'shops' && $controllerName === 'index' && $actionName === 'view'&& $request->getParam('shop'))."}}</h2>");
-            // //echo('<h1>($moduleName === shops && $controllerName === index && $actionName === view&& $request->getParam(catalog):</h1><h2>{{'.($moduleName === 'shops' && $controllerName === 'index' && $actionName === 'view'&& $request->getParam('catalog'))."}}</h2>");
-            // //echo('<h1>($moduleName === shops && $controllerName === index && $actionName === view&& $request->getParam(shop)&& $request->getParam(catalog):</h1><h2>{{'.($moduleName === 'shops' && $controllerName === 'index' && $actionName === 'view'&& $request->getParam('shop')&& $request->getParam('catalog'))."}}</h2>");
+            // echo('<h1>$moduleName:<h2>{{'. $moduleName."}}</h2>");
+            // echo('<h1>controllerName:<h2>{{'.$controllerName."}}</h2>");
+            // echo('<h1>actionName:</h1><h2>{{'.$actionName."}}</h2>");
+            // echo('<h1>($moduleName === shops && $controllerName === index && $actionName === index&& $request->getParam(shop):</h1><h2>{{'.($moduleName === 'shops' && $controllerName === 'index' && $actionName === 'index'&& $request->getParam('shop'))."}}</h2>");
+            // echo('<h1>($moduleName === shops && $controllerName === index && $actionName === view:</h1><h2>{{'.($moduleName === 'shops' && $controllerName === 'index' && $actionName === 'view')."}}</h2>");
+            // echo('<h1>($moduleName === shops && $controllerName === index && $actionName === view&& $request->getParam(shop):</h1><h2>{{'.($moduleName === 'shops' && $controllerName === 'index' && $actionName === 'view'&& $request->getParam('shop'))."}}</h2>");
+            // echo('<h1>($moduleName === shops && $controllerName === index && $actionName === view&& $request->getParam(catalog):</h1><h2>{{'.($moduleName === 'shops' && $controllerName === 'index' && $actionName === 'view'&& $request->getParam('catalog'))."}}</h2>");
+            // echo('<h1>($moduleName === shops && $controllerName === index && $actionName === view&& $request->getParam(shop)&& $request->getParam(catalog):</h1><h2>{{'.($moduleName === 'shops' && $controllerName === 'index' && $actionName === 'view'&& $request->getParam('shop')&& $request->getParam('catalog'))."}}</h2>");
 
             // //echo("<br/>=====================================<br/>");
   
@@ -64,6 +65,7 @@ class Router implements RouterInterface
             $identifier = trim($request->getPathInfo(), '/');
             $identifierParts = explode('/', $identifier);
             //echo('<h1>$identifierParts:</h1> <h2>{{'.implode(" ",$identifierParts)."}}</h2>");
+            $this->logger->debug('0x13videntifier'.$identifier);
 
             if (count($identifierParts) > 1 && $identifierParts[0] === 'shops') {
             //     $shopTitle = $identifierParts[1];
@@ -71,7 +73,7 @@ class Router implements RouterInterface
             //    ////echo('Looking for shops_id: {{' . $shopTitle."}}");
                 
             //     // // Load the shop by title
-            //     $shop = $this->shopsFactory->create()->load($shopTitle, 'title');
+            //     $shop = $this->routerFactory->create()->load($shopTitle, 'title');
             //     ////echo('<h1>Load shop:<h2>{{'.$shop->getTitle()."}}</h2>");
             //     if ($shop->getId()) {
             //         $request->setModuleName('shops')
@@ -87,26 +89,27 @@ class Router implements RouterInterface
                     $subcatalogSlug = $identifierParts[3] ?? null;
 
                     if ($shopSlug) {
-                        $shop = $this->shopsFactory->create()->load($shopSlug, 'url_slug');
+                        $shop = $this->routerFactory->create()->load($shopSlug, 'url_slug');
+                        // echo('<h1>$shop->getId():</h1><h2>{{'.$shop->getId()."}}</h2>");
 
                         if ($shop->getId()) {
                             if ($catalogSlug) {
-                                if ($subcatalogSlug) {
-                                    // Handle /shops/<shop_slug>/<catalog_slug>/<subcatalog_slug>
-                                    // $request->setModuleName('shops')
-                                    //     ->setControllerName('index')
-                                    //     ->setActionName('subcatalog')
-                                    //     ->setParam('shop', $shop->getId())
-                                    //     ->setParam('catalog', $catalogSlug)
-                                    //     ->setParam('id', $subcatalogSlug);
-                                } else {
-                                    // Handle /shops/<shop_slug>/<catalog_slug>
-                                    $request->setModuleName('shops')
-                                        ->setControllerName('index')
-                                        ->setActionName('view')
-                                        // ->setParam('shop', $shop->getId())
-                                        ->setParam('catalog', $catalogSlug);
-                                }
+                                // if ($subcatalogSlug) {
+                                //     // Handle /shops/<shop_slug>/<catalog_slug>/<subcatalog_slug>
+                                //     // $request->setModuleName('shops')
+                                //     //     ->setControllerName('index')
+                                //     //     ->setActionName('subcatalog')
+                                //     //     ->setParam('shop', $shop->getId())
+                                //     //     ->setParam('catalog', $catalogSlug)
+                                //     //     ->setParam('id', $subcatalogSlug);
+                                // } else {
+                                //     // Handle /shops/<shop_slug>/<catalog_slug>
+                                //     $request->setModuleName('shops')
+                                //         ->setControllerName('index')
+                                //         ->setActionName('view')
+                                //         // ->setParam('shop', $shop->getId())
+                                //         ->setParam('catalog', $catalogSlug);
+                                // }
                             } else {
                                 // Handle /shops/<shop_slug>
                                 $request->setModuleName('shops')

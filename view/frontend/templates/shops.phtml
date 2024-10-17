@@ -9,13 +9,13 @@
  */
 ?>
 <?php
-    $singleData = $block->getSingleData();
-    $subcategories = $singleData->getSubcategories($singleData->getShopCategoryId());
+    $shop = $block->getSingleData();
+    $subcategories = $shop->getSubcategories($shop->getShopCategoryId());
     $objectManager = \Magento\Framework\App\ObjectManager::getInstance(); 
     $categoryObject = $objectManager->create('Magento\Catalog\Model\Category');
-    $CategoryTopSellingProducts = $singleData->getRelatedCategoryTopSellingProducts();
-    $CategoryNewProducts = $singleData->getRelatedCategoryNewProducts() ;
-    $ShopCatalogs = $singleData-> getShopCatalogs();
+    $CategoryTopSellingProducts = $shop->getRelatedCategoryTopSellingProducts();
+    $CategoryNewProducts = $shop->getRelatedCategoryNewProducts() ;
+    $ShopCatalogs = $shop->getShopCatalogs();
 ?>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -34,12 +34,12 @@
 
 <!-- Hero Section -->
 <section class="hero-section">
-    <img class="hero_image_pc" src="/media/<?= $singleData->getImage(); ?>" alt="Hero Image">
-    <img class="hero_image_mobile" src="/media/<?= $singleData->getImage(); ?>" alt="Hero Image">
+    <img class="hero_image_pc" src="/media/<?= $shop->getImage(); ?>" alt="Hero Image">
+    <img class="hero_image_mobile" src="/media/<?= $shop->getImage(); ?>" alt="Hero Image">
     <div class="hero_section_layer"></div>
     <div class="hero-text">
-        <img class="hero_logo" src="/media/<?= $singleData->getIcon(); ?>" alt="<?= $singleData->getTitle(); ?> Logo">
-        <p class="hero-subtitle"><?= $singleData->getDescription(); ?></p>
+        <img class="hero_logo" src="/media/<?= $shop->getIcon(); ?>" alt="<?= $shop->getTitle(); ?> Logo">
+        <p class="hero-subtitle"><?= $shop->getDescription(); ?></p>
     </div>
 </section>
 
@@ -60,31 +60,31 @@
         <!-- Information Section -->
         <section class="info-section">
             <div class="info-column">
-                <div class="info-title"><?= $singleData->getTitle(); ?></div>
+                <div class="info-title"><?= $shop->getTitle(); ?></div>
                 <div class="info-description">
-                    <?= $singleData->getContent(); ?>
+                    <?= $shop->getContent(); ?>
                 </div>
                 <div class="info-subtitle">Certifications And Awards</div>
-                    <?= $singleData->getCertificationsAndAwards(); ?>
+                    <?= $shop->getCertificationsAndAwards(); ?>
                 </div>
 
             <div class="info-column">
-                <div class="info-title">Shop <?= $singleData->getTitle(); ?> On Bayt Alebaa</div>
+                <div class="info-title">Shop <?= $shop->getTitle(); ?> On Bayt Alebaa</div>
                 <div class="info-description">
-                    <?= $singleData->getShopOn(); ?>
+                    <?= $shop->getShopOn(); ?>
                 </div>
                 <div class="info-subtitle">Service Provided</div>
-                <div class="info-text"><?= $singleData->getServiceProvided(); ?></div>
+                <div class="info-text"><?= $shop->getServiceProvided(); ?></div>
 
                 <div class="info-subtitle">Areas Covered</div>
-                <div class="info-text"><?= $singleData->getAreasCovered(); ?></div>
+                <div class="info-text"><?= $shop->getAreasCovered(); ?></div>
             </div>
         </section>
 
         <!-- Category Section -->
         <?php if(count($subcategories)): ?>
          <section class="category-section">
-            <h2 class="category-title">Shop <?= $singleData->getTitle(); ?> By Category</h2>
+            <h2 class="category-title">Shop <?= $shop->getTitle(); ?> By Category</h2>
                 <div class="category-slider">
                     <div class="category-grid">
                         <?php foreach ($subcategories as $subcategory) : ?>
@@ -103,7 +103,7 @@
         <?php if(count($CategoryTopSellingProducts)): ?>
         <!-- Best Seller Section -->
             <section class="best-seller-section">
-                <h2 class="section-title"><?= $singleData->getTitle(); ?> Best Seller</h2>
+                <h2 class="section-title"><?= $shop->getTitle(); ?> Best Seller</h2>
                 <div class="owl-carousel owl-theme">
                 <?php foreach ($CategoryTopSellingProducts as $product) : ?>
                         <div class="item">
@@ -137,7 +137,7 @@
         <?php if(count($CategoryNewProducts)): ?>
         <!-- New Arrivals Section -->
             <section class="new-arrivals-section">
-                <h2 class="section-title">New Arrivals from <?= $singleData->getTitle(); ?></h2>
+                <h2 class="section-title">New Arrivals from <?= $shop->getTitle(); ?></h2>
                 <div class="owl-carousel owl-theme">
                 <?php foreach ($CategoryNewProducts as $product) : ?>
                     <div class="item">

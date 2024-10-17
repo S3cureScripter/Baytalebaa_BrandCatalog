@@ -16,10 +16,12 @@ use Magento\Cms\Model\Template\FilterProvider;
  */
 class Catalogs extends \Magento\Framework\View\Element\Template
 {
- /**
+    /**
     * @var Catalogs
     */
     protected $_catalogs;
+    private $_catalogsid = null;
+
     public function __construct(
         Context $context,
         CatalogsFactory $catalogs,
@@ -41,10 +43,18 @@ class Catalogs extends \Magento\Framework\View\Element\Template
         $id = $this->getRequest()->getParam('shop');
         $catalogs = $this->_catalogs->create();
         $singleData = $catalogs->load($id);
-        if($singleData->getCatalogsId() || $singleData['catalogs_id'] && $singleData->getStatus() == 1){
+        // echo "0x13v: ".$singleData->getTitle();
+        // var_dump($singleData->debug());die;
+        if($singleData->getCatalogsId() || $singleData['catalog_id'] && $singleData->getStatus() == 1){
+            $this->_catalogsid = $id;
             return $singleData;
         }else{
             return false;
         }
+    }
+
+    public function getId()
+    {
+        return $this->_catalogsid;
     }
 }
