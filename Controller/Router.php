@@ -9,7 +9,7 @@ use Magento\Framework\App\ActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\App\RouterInterface;
-use Baytalebaa\Shops\Model\CatalogsFactory as RouterFactory;
+use Baytalebaa\Shops\Model\SubcatalogsFactory as RouterFactory;
 
 class Router implements RouterInterface
 {
