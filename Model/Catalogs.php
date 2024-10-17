@@ -12,6 +12,7 @@ namespace Baytalebaa\Shops\Model;
 use Magento\Framework\Model\AbstractModel;
 use Baytalebaa\Shops\Model\ResourceModel\Subcatalogs\CollectionFactory as CatalogsCollectionFactory;
 
+
 class Catalogs extends AbstractModel
 {
     protected $subCatalogCollectionFactory;
@@ -68,6 +69,7 @@ class Catalogs extends AbstractModel
     {
         $subCatalogs = $this->subCatalogCollectionFactory->create()
             ->addFieldToFilter('subcatalog_id', $this->getId())
+
             ->addFieldToFilter('status', 1); // Optional: Filter by status if needed
 
         return $subCatalogs;

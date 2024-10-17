@@ -1,1 +1,8 @@
-h1.page-title{color: red;}
+.background-layer{
+    background: linear-gradient(-90deg, rgba(0, 0, 0, 0.73) 8.5%, rgba(0, 0, 0, 0.545) 43.5%, rgba(255, 255, 255, 0) 100%);
+}
+
+.catalog-item-title{
+    left: unset;
+    right: 13%;
+}
