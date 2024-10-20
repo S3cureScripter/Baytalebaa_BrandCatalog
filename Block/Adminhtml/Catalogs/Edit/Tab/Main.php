@@ -129,7 +129,6 @@ class Main extends Generic implements TabInterface
                 'label' => __('Content'),
                 'title' => __('Content'),
                 'style' => 'height:26em;',
-                'required' => true,
                 'config'    => $this->_wysiwygConfig->getConfig(),
                 'wysiwyg' => true
             ]
