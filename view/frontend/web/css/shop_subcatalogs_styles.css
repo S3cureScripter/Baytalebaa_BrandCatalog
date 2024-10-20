@@ -1,0 +1,572 @@
+.main-layout{
+    padding: 3.4% 0 0;
+}
+
+.main-page {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.main-page .main-image {
+    width: 67%;
+}
+
+.main-page .main-image .product-image {
+    width: 86%;
+    margin: auto;
+    display: block;
+    border-radius: 15px;
+}
+
+.main-page .product-details, .about-product .product-details {
+    width: 32.5%;
+    background: white;
+    border-radius: 15px;
+    padding: 50px 62px;
+    margin-bottom: 40px;
+}
+
+.main-page .product-details .product-title, .about-product .product-title {
+    font-size: 1.7rem;
+    margin-bottom: 30px;
+    color: black;
+    line-height: 1;
+}
+
+.main-page .product-details .product-description, .about-product .product-description {
+    font-size: 1.2rem;
+    color: black;
+    font-weight: 300;
+    text-align: justify;
+    font-family: 'HelveticaNeue-light', sans-serif;
+}
+
+.main-page .kohler-rating, .about-product .kohler-rating {
+    display: flex;
+    align-items: center;
+}
+
+.main-page .product-logo, .about-product .product-logo {
+    margin-bottom: 70px;
+}
+
+.main-page .kohler-logo, .about-product .kohler-logo {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.main-page .kohler-details, .about-product .kohler-details {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.main-page .kohler-details .kohler-name, .about-product .kohler-details .kohler-name {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: bold;
+    line-height: 1;
+    color: black;
+}
+
+.main-page .kohler-details .rating, .about-product .kohler-details .rating {
+    line-height: 1;
+}
+
+.main-page .kohler-details .star, .about-product .kohler-details .star {
+    font-size: 24px;
+    color: #1C6D99;
+    margin-right: 0;
+    font-size: 1.8rem;
+    color: #1C6D99;
+    margin-right: 0;
+    line-height: 1;
+    letter-spacing: 0px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .main-page {
+        flex-direction: column; /* Stack elements vertically on smaller tablets */
+    }
+
+    .main-page .main-image {
+        width: 100%; /* Full width for images on tablet screens */
+    }
+
+    .main-page .product-details {
+        width: 100%; /* Full width for product details on tablet */
+        padding: 30px; /* Adjust padding for tablets */
+    }
+
+    .main-page .product-details .product-title {
+        font-size: 1.6rem; /* Adjust font size for tablet */
+    }
+
+    .main-page .product-details .product-description {
+        font-size: 1.1rem; /* Adjust font size for description */
+    }
+
+    .main-page .kohler-details .kohler-name {
+        font-size: 1.3rem; /* Adjust logo name font size */
+    }
+
+    .main-page .kohler-details .star {
+        font-size: 1.7rem; /* Adjust star icon size */
+    }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .main-page {
+        flex-direction: column; /* Stack elements vertically on smaller screens */
+        margin-bottom: 0;
+    }
+
+    .main-page .main-image {
+        width: 100%; /* Full width for images on smaller screens */
+    }
+
+    .main-page .main-image .product-image {
+        width: 100%;
+    }
+
+    .main-page .product-details {
+        display: none;
+    }
+
+    .about-product {
+        display: block !important;
+    }
+
+    .about-product .product-details {
+        width: 100%; /* Full width for product details */
+        padding: 20px; /* Adjust padding for better spacing */
+    }
+
+    .about-product .product-details .product-title {
+        font-size: 1.5rem; /* Adjust font size for smaller screens */
+    }
+
+    .about-product .product-details .product-description {
+        font-size: 1rem; /* Adjust font size for description */
+    }
+
+    .about-product .kohler-details .kohler-name {
+        font-size: 1.2rem; /* Adjust logo name font size */
+    }
+
+    .about-product .kohler-details .star {
+        font-size: 1.5rem; /* Adjust star icon size */
+    }
+
+    .about-product .product-logo{
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-product .product-details {
+        padding: 15px; /* Further reduce padding for mobile */
+    }
+
+    .about-product .product-details .product-title {
+        font-size: 1.2rem; /* Further reduce font size for title */
+    }
+
+    .about-product .product-details .product-description {
+        font-size: 0.9rem; /* Further reduce font size for description */
+    }
+
+    .about-product .kohler-details .kohler-name {
+        font-size: 1rem; /* Further reduce logo name font size */
+    }
+}
+
+/* Gallery Section */
+#gallery-section {
+    margin-top: 40px;
+}
+
+#gallery-visible .image {
+    width: 16%;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+#see-all-container {
+    margin-top: 20px;
+}
+
+#see-all-container{
+    position: relative;
+    display: inline-block;
+}
+
+#seeAllButton{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    padding: 8px 12px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: rgb(255, 255, 255);
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 100%;
+    height: 97%;
+    font-size: 1.4rem;
+}
+
+@media (max-width: 768px) {
+    #gallery-section {
+        margin-top: 0;
+    }
+    #gallery-visible .image {
+        width: 31%;
+        margin-right: 6px;
+    }
+    #seeAllButton{
+        height: 93%;
+    }
+}
+/* gallery popup section */
+#popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+#popup-gallery {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#popup-image {
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 10px;
+}
+
+#prev-btn, #next-btn {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    padding: 10px 10px 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 10px;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 1;
+}
+
+#prev-btn {
+    top: 50%;
+    left: 8%;
+}
+
+#next-btn {
+    top: 50%;
+    right: 8%;
+}
+
+#close-popup {
+    position: absolute;
+    top: 125px;
+    right: 40px;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+/* About Product Section */
+.about-product{
+    display: none;
+}
+
+/* Best Seller Section */
+.best-seller-section {
+    background-color: #fff;
+    padding: 40px;
+    margin: 40px 0;
+    border-radius: 15px;
+    box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.03);
+}
+
+.best-seller-section .section-title {
+    text-align: center;
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: #03557E;
+    margin-bottom: 30px;
+}
+
+.owl-theme .owl-nav{
+    width: 0;
+    height: 0;
+}
+
+.best-seller-section .owl-carousel.owl-theme {
+    padding: 0 104px;
+    width: 100%;
+    margin: auto;
+}
+
+.best-seller-section .item {
+    text-align: center;
+}
+
+.best-seller-section .item-image {
+    height: auto;
+    border-radius: 10px 10px 0 0;
+}
+
+.best-seller-section .item-details {
+    text-align: right;
+    background: #F5F5F7;
+    padding: 11px 25px;
+    border-radius: 0 0 10px 10px;
+}
+
+.best-seller-section .product-name {
+    font-size: 18px;
+    font-weight: 300;
+    text-align: left;
+    margin-bottom: 0;
+    color: black;
+    font-family: 'HelveticaNeue-light';
+    line-height: 1.3;
+}
+
+.best-seller-section .product-price {
+    font-size: 16px;
+    color: black;
+    margin-bottom: 0;
+    text-align: left;
+    font-family: 'HelveticaNeue-Light';
+}
+
+.best-seller-section .price-number {
+    font-size: 1.4rem;
+    font-family: 'HelveticaNeue-Bold';
+    font-weight: 600;
+}
+
+.best-seller-section .add-to-cart {
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    background: none;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.best-seller-section .add-to-cart .add-to-cart-icon {
+    vertical-align: middle;
+}
+
+.best-seller-section .add-to-cart .add-to-cart-text {
+    vertical-align: bottom;
+    text-decoration: underline;
+    color: #03557E;
+    font-weight: 500;
+}
+
+.best-seller-section .add-to-cart:hover {
+    background-color: none;
+    border: none;
+}
+
+.best-seller-section .owl-carousel:not(.custom-nav) .owl-nav button.owl-prev:before,
+.best-seller-section .owl-carousel:not(.custom-nav) .owl-nav button.owl-next:before {
+    content: "";
+}
+
+@media (max-width: 1200px) {
+    .best-seller-section .owl-carousel.owl-theme {
+        padding: 0 50px;
+    }
+}
+
+@media (max-width: 992px) {
+    .best-seller-section .owl-carousel.owl-theme {
+        padding: 0 30px;
+    }
+
+    .best-seller-section .section-title {
+        font-size: 1.5rem;
+    }
+
+    .best-seller-section .product-name {
+        font-size: 16px;
+    }
+
+    .best-seller-section .product-price {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .best-seller-section .owl-carousel.owl-theme {
+        padding: 0 15px;
+    }
+
+    .best-seller-section .section-title {
+        font-size: 1.3rem;
+    }
+
+    .best-seller-section .item-details {
+        padding: 8px 15px;
+    }
+
+    .best-seller-section .product-name {
+        font-size: 14px;
+    }
+
+    .best-seller-section .product-price {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .best-seller-section .section-title {
+        font-size: 1.2rem;
+    }
+
+    .best-seller-section .item-details {
+        padding: 5px 10px;
+    }
+}
+
+/* Custom Navigation for Owl Carousel */
+.custom-prev, .custom-next {
+    font-size: 24px;
+    color: #004c5c;
+    cursor: pointer;
+}
+
+.owl-nav .custom-prev, .owl-nav .custom-next {
+    position: absolute;
+    top: 35%;
+    transform: translateY(-50%);
+    padding: 10px;
+    width: 47px;
+    height: 47px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.06);
+}
+
+.fas.fa-chevron-left{
+    display: block;
+    margin: auto;
+    margin-top: 2px;
+    margin-right: 2px;
+}
+
+.fas.fa-chevron-right{
+    display: block;
+    margin: auto;
+    margin-top: 2px;
+    margin-left: 2px;
+}
+
+.owl-nav .custom-prev {
+    left: 80px;
+}
+
+.owl-nav .custom-next {
+    right: 80px;
+}
+
+@media (max-width: 1200px) {
+    .owl-nav .custom-prev {
+        left: 40px;
+    }
+    .owl-nav .custom-next {
+        right: 40px;
+    }
+}
+
+@media (max-width: 992px) {
+    .owl-nav .custom-prev {
+        left: 7px;
+    }
+    .owl-nav .custom-next {
+        right: 7px;
+    }
+}
+
+@media (max-width: 768px) {
+    .owl-nav .custom-prev {
+        left: -10px;
+    }
+    .owl-nav .custom-next {
+        right: -10px;
+    }
+}
+
+/* Comment Section */
+.comment-section {
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 600px;
+    white-space: nowrap;
+}
+
+.comment-section .avatar {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.comment-section .avatar .user-avatar {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    margin-right: 25px;
+}
+
+.comment-section .comment-input {
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(100% - 60px);
+    padding: 15px 15px 13px;
+    border: 1px solid #CDD6DA;
+    border-radius: 4px;
+    font-size: 1.4rem;
+    line-height: 1;
+    height: 50px;
+}
+
+.comment-section .comment-input::placeholder {
+    color: #B1B0AC;
+}
+
+@media (max-width: 768px) {
+    .comment-section .avatar .user-avatar {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+    }
+
+    .comment-section .comment-input {
+        width: calc(100% - 60px);
+        font-size: 1rem;
+        line-height: 1;
+        height: 40px;
+    }
+}

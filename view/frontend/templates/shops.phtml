@@ -110,7 +110,7 @@
                             <img class="item-image" src="<?= ($product->getImageUrl())?$product->getImageUrl():"/media/favicon/stores/2/baytalebaa-logo.png"?>" alt="<?php echo $product->getName(); ?>"/>
                             <div class="item-details">
                                 <p class="product-name"><?php echo $product->getName(); ?></p>
-                                <p class="price"><strong class="price-number"><?php echo $product->getFinalPrice(); ?></strong> SAR</p>
+                                <p class="product-price"><strong class="price-number"><?php echo $product->getFinalPrice(); ?></strong> SAR</p>
                                 <button class="add-to-cart">
                                     <svg class="add-to-cart-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
                                         <g clip-path="url(#clip0_102_402)">
@@ -184,7 +184,60 @@
     </div>
 </div>
 
-<!-- Include jQuery (required by Owl Carousel) -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
-<!-- Include Owl Carousel JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script>
+    require(['jquery', 'mgsowlcarousel'], function ($) {
+        $(document).ready(function() {
+            $('.best-seller-section .owl-carousel').owlCarousel({
+                items: 4,
+                loop: false,
+                margin: 14,
+                nav: true,
+                dots: false,
+                navText: [
+                    '<div class="custom-prev"><i class="fas fa-chevron-left"></i></div>',
+                    '<div class="custom-next"><i class="fas fa-chevron-right"></i></div>'
+                ],
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 4
+                    },
+                    1200: {
+                        items: 4
+                    }
+                }
+            });
+            
+            $('.new-arrivals-section .owl-carousel').owlCarousel({
+                items: 4,
+                loop: false,
+                margin: 14,
+                nav: true,
+                dots: false,
+                navText: [
+                    '<div class="custom-prev"><i class="fas fa-chevron-left"></i></div>',
+                    '<div class="custom-next"><i class="fas fa-chevron-right"></i></div>'
+                ],
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 4
+                    },
+                    1200: {
+                        items: 4
+                    }
+                }
+            });
+        });
+    });
+</script>

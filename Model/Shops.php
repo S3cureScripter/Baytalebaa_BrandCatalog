@@ -140,25 +140,38 @@ class Shops extends AbstractModel
     {
         try {
             $category = $this->categoryRepository->get($this->getShopBrandId());
-
+    
             // Load bestseller product IDs
             $bestsellers = $this->bestsellersCollectionFactory->create()->setPeriod('month');
             $bestsellerProductIds = [];
             foreach ($bestsellers as $item) {
                 $bestsellerProductIds[] = $item->getProductId();
             }
-
-            // Filter the product collection based on bestseller IDs
+    
+            // Create the product collection
             $productCollection = $this->productCollectionFactory->create();
-            $productCollection->addCategoryFilter($category)
-                ->addAttributeToSelect(['name', 'price', 'image'])
-                ->addIdFilter($bestsellerProductIds);
-
+            $productCollection->addAttributeToSelect(['name', 'price', 'image']);
+    
+            if ($category->getUseInRule() == 1) {
+                // Handle virtual category: fetch products based on dynamic conditions
+                $rule = $category->getMatchingProductIds(); // Get product IDs for the virtual category
+                if (!empty($rule)) {
+                    $productCollection->addIdFilter($rule);
+                }
+            } else {
+                // Handle normal category: use addCategoryFilter
+                $productCollection->addCategoryFilter($category);
+            }
+    
+            // Filter by bestseller product IDs
+            $productCollection->addIdFilter($bestsellerProductIds);
+    
             return $productCollection;
         } catch (NoSuchEntityException $e) {
             return null;
         }
     }
+    
 
     /**
     * Get the Shop catalogs

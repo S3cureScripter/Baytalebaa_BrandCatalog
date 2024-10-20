@@ -1,8 +1,0 @@
-.htaccess
-autoload.php
-bootstrap.php
-etc/env.php
-etc/config.php
-*.zip
-Controller/Router.php
-view/frontend/layout/shops_index_index.xml
