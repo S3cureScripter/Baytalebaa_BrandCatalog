@@ -1,92 +1,82 @@
-/* Catalog Section */
-.catalog-section {
-    margin-left: 8.3%;
-    margin-right: 8.3%;
-    margin-top: 40px;
-    margin-bottom: 40px;
+body {
+    line-height: 1.4;
+    color: black;
+    background: #F5F5F7;
 }
 
-.catalog-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 18%;
+.gallery-section{
+    padding: 2.1% 0 0;
 }
 
-.catalog-item {
-    position: relative;
-    box-shadow: 0px 3px 9px 2px rgba(0, 0, 0, 0.25);
-    overflow: hidden;
-    border-radius: 15px;
+.gallery-title{
+    color: #03557E;
+    margin-bottom: 15px;
 }
 
-.catalog-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.catalog-item-title {
-    position: absolute;
-    bottom: 9.5%;
-    left: 13%;
-    color: #fff;
-    font-size: 3rem;
+.gallery-description {
+    width: 50%;
+    font-size: 1.1rem;
+    text-align: justify;
+    margin-bottom: 60px;
     font-weight: 300;
-    z-index: 2;
+    color: black;
+    font-family: 'HelveticaNeue-Light';
+    letter-spacing: 0.5px;
 }
 
-.background-layer {
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.73) 8.5%, rgba(0, 0, 0, 0.545) 43.5%, rgba(255, 255, 255, 0) 100%);
-    position: absolute;
-    z-index: 1;
-    width: 74%;
-    height: 100%;
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
 }
 
-/* Responsive Design */
+.gallery-item{
+    margin-bottom: 44px;
+}
 
-/* Medium screens (tablets) */
-@media screen and (max-width: 1024px) {
-    .catalog-grid {
+.gallery-image{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 17px;
+}
+
+.image-caption {
+    font-size: 1.3rem;
+    color: black;
+    font-family: "HelveticaNeue-Light", sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
-        grid-gap: 10%;
+        gap: 7px;
     }
 
-    .catalog-item-title {
-        font-size: 2.5rem;
-        left: 12%;
-        bottom: 7%;
-    }
-}
-
-/* Small screens (mobiles) */
-@media screen and (max-width: 768px) {
-    .catalog-grid {
-        grid-template-columns: 1fr;
-        grid-gap: 5%;
+    .gallery-item{
+        margin-bottom: 0;
     }
 
-    .catalog-item-title {
-        font-size: 2rem;
-        left: 10%;
-        bottom: 9%;
-    }
-
-    .background-layer {
+    .gallery-description{
         width: 100%;
-    }
-}
-
-/* Extra small screens (mobile devices in portrait mode) */
-@media screen and (max-width: 480px) {
-    .catalog-item-title {
-        font-size: 1.5rem;
-        left: 8%;
-        bottom: 4%;
+        font-size: 0.8rem;
+        margin-bottom: 25px;
     }
 
-    .background-layer {
-        width: 100%;
+    .image-caption{
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+    }
+
+    .gallery-image{
+        margin-bottom: 0px;
     }
 }
