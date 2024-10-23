@@ -17,10 +17,12 @@ class Main extends Generic implements TabInterface
 {
     protected $_wysiwygConfig;
     protected $_shopCollectionFactory;
+    protected $_systemStore;
 
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Framework\Registry $registry,
+        \Magento\Store\Model\System\Store $systemStore,
         \Magento\Framework\Data\FormFactory $formFactory,
         \Magento\Cms\Model\Wysiwyg\Config $wysiwygConfig,
         CollectionFactory $shopCollectionFactory, // Inject the Shop CollectionFactory
@@ -29,6 +31,7 @@ class Main extends Generic implements TabInterface
     {
         $this->_wysiwygConfig = $wysiwygConfig;
         $this->_shopCollectionFactory = $shopCollectionFactory; // Assign CollectionFactory
+        $this->_systemStore = $systemStore;
         parent::__construct($context, $registry, $formFactory, $data);
     }
 
@@ -103,7 +106,31 @@ class Main extends Generic implements TabInterface
                 'values' => $this->_getShopOptions()  // Load shop options
             ]
         );
-
+        // Add store view field
+        if (!$this->_storeManager->isSingleStoreMode()) {
+            $field = $fieldset->addField(
+                'store_id',
+                'multiselect',
+                [
+                    'name' => 'stores[]',
+                    'label' => __('Store View'),
+                    'title' => __('Store View'),
+                    'required' => true,
+                    'values' => $this->_systemStore->getStoreValuesForForm(false, true),
+                ]
+            );
+            $renderer = $this->getLayout()->createBlock(
+                \Magento\Backend\Block\Store\Switcher\Form\Renderer\Fieldset\Element::class
+            );
+            $field->setRenderer($renderer);
+        } else {
+            $fieldset->addField(
+                'store_id',
+                'hidden',
+                ['name' => 'stores[]', 'value' => $this->_storeManager->getStore(true)->getId()]
+            );
+            $model->setStoreId($this->_storeManager->getStore(true)->getId());
+        }
         $fieldset->addField(
             'image',
             'image',
@@ -133,7 +160,10 @@ class Main extends Generic implements TabInterface
                 'wysiwyg' => true
             ]
         );
-
+        // Set form values
+        if (!$model->getId()) {
+            $model->setData('store_id', '0');
+        }
         $form->setValues($model->getData());
         $this->setForm($form);
         return parent::_prepareForm();

@@ -10,20 +10,22 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\App\RouterInterface;
 use Baytalebaa\Shops\Model\ShopsFactory as RouterFactory;
-
+use Magento\Store\Model\StoreManagerInterface;
 class Router implements RouterInterface
 {
     protected $actionFactory;
     protected $routerFactory;
     protected $logger;
-
+    protected $storeManager;
     public function __construct(
         ActionFactory $actionFactory, 
         RouterFactory $routerFactory, 
-        \Psr\Log\LoggerInterface $logger
+        \Psr\Log\LoggerInterface $logger,
+        StoreManagerInterface $storeManager 
     ) {
         $this->actionFactory = $actionFactory;
         $this->routerFactory = $routerFactory;
+        $this->storeManager = $storeManager; 
         $this->logger = $logger;
     }
 
@@ -87,9 +89,14 @@ class Router implements RouterInterface
                     $shopSlug = $identifierParts[1] ?? null;
                     $catalogSlug = $identifierParts[2] ?? null;
                     $subcatalogSlug = $identifierParts[3] ?? null;
+                    $storeId = $this->storeManager->getStore()->getId(); // Get the current store ID
 
                     if ($shopSlug) {
-                        $shop = $this->routerFactory->create()->load($shopSlug, 'url_slug');
+                        // $shop = $this->routerFactory->create()->load($shopSlug, 'url_slug');
+                        $shop = $this->routerFactory->create()->getCollection()
+                    ->addFieldToFilter('url_slug', $shopSlug)
+                    ->addFieldToFilter('store_id', $storeId)
+                    ->getFirstItem();
                         // echo('<h1>$shop->getId():</h1><h2>{{'.$shop->getId()."}}</h2>");
 
                         if ($shop->getId()) {

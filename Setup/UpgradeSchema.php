@@ -8,13 +8,13 @@ class UpgradeSchema implements \Magento\Framework\Setup\UpgradeSchemaInterface
 	{
 		$installer = $setup;
 		$installer->startSetup();
-        
+
 
         if (version_compare($context->getVersion(), '1.0.1', '<')) {
             /**
             * Creating table Baytalebaa_Shops_Catalog
             */
-            if (!$installer->tableExists('Baytalebaa_Shops_Catalog')) 
+            if (!$installer->tableExists('Baytalebaa_Shops_Catalog'))
             {
                 $table = $installer->getConnection()->newTable(
                     $installer->getTable('Baytalebaa_Shops_Catalog')
@@ -62,25 +62,25 @@ class UpgradeSchema implements \Magento\Framework\Setup\UpgradeSchemaInterface
                         'Created At'
                     )->addForeignKey(
                         $installer->getFkName(
-                            'Baytalebaa_Shops_Catalog', 
-                            'Catalog_shop_id', 
-                            'baytalebaa_shops',  
+                            'Baytalebaa_Shops_Catalog',
+                            'Catalog_shop_id',
+                            'baytalebaa_shops',
                             'shops_id'    // Referencing 'shops_id' in 'baytalebaa_shops'
                         ),
                         'Catalog_shop_id',                        // Column in Baytalebaa_Shops_Catalog
-                        $installer->getTable('baytalebaa_shops'),      
+                        $installer->getTable('baytalebaa_shops'),
                         'shops_id',                             // Correct column in baytalebaa_shops
                         \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
                     )->setComment(
                         'Baytalebaa Catalog Table'
                     );
                 $installer->getConnection()->createTable($table);
-            }	
+            }
 
             /**
             * Creating table Baytalebaa_Shops_SubCatalog
             */
-            if (!$installer->tableExists('Baytalebaa_Shops_SubCatalog')) 
+            if (!$installer->tableExists('Baytalebaa_Shops_SubCatalog'))
             {
                 $table = $installer->getConnection()->newTable(
                     $installer->getTable('Baytalebaa_Shops_SubCatalog')
@@ -134,20 +134,20 @@ class UpgradeSchema implements \Magento\Framework\Setup\UpgradeSchemaInterface
                         'Created At'
                     )->addForeignKey(
                         $installer->getFkName(
-                            'Baytalebaa_Shops_SubCatalog', 
-                            'catalog_id', 
-                            'Baytalebaa_Shops_Catalog',  
+                            'Baytalebaa_Shops_SubCatalog',
+                            'catalog_id',
+                            'Baytalebaa_Shops_Catalog',
                             'catalog_id'    // Referencing 'catalog_id' in 'Baytalebaa_Shops_Catalog'
                         ),
                         'catalog_id',                        // Column in Baytalebaa_Shops_SubCatalog
-                        $installer->getTable('Baytalebaa_Shops_Catalog'),     
+                        $installer->getTable('Baytalebaa_Shops_Catalog'),
                         'catalog_id',                             // Correct column in Baytalebaa_Shops_Catalog
                         \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
                     )->setComment(
                         'Baytalebaa Catalog Table'
                     );
                 $installer->getConnection()->createTable($table);
-            }	
+            }
         }
 
         // change fk table
@@ -188,8 +188,8 @@ class UpgradeSchema implements \Magento\Framework\Setup\UpgradeSchemaInterface
                         'comment' => 'URL Slug'
                     ]
                 );
-            }	
-            
+            }
+
             if (!$setup->getConnection()->tableColumnExists($setup->getTable('Baytalebaa_Shops_Catalog'), 'url_slug')) {
                 $setup->getConnection()->addColumn(
                     $setup->getTable('Baytalebaa_Shops_Catalog'),
@@ -200,8 +200,8 @@ class UpgradeSchema implements \Magento\Framework\Setup\UpgradeSchemaInterface
                         'comment' => 'URL Slug'
                     ]
                 );
-            }	
-            
+            }
+
             if (!$setup->getConnection()->tableColumnExists($setup->getTable('Baytalebaa_Shops_SubCatalog'), 'url_slug')) {
                 $setup->getConnection()->addColumn(
                     $setup->getTable('Baytalebaa_Shops_SubCatalog'),
@@ -212,8 +212,8 @@ class UpgradeSchema implements \Magento\Framework\Setup\UpgradeSchemaInterface
                         'comment' => 'URL Slug'
                     ]
                 );
-            }	
-            
+            }
+
             if (!$setup->getConnection()->tableColumnExists($setup->getTable('Baytalebaa_Shops_SubCatalog'), 'images')) {
                 $setup->getConnection()->addColumn(
                     $setup->getTable('Baytalebaa_Shops_SubCatalog'),
@@ -224,8 +224,49 @@ class UpgradeSchema implements \Magento\Framework\Setup\UpgradeSchemaInterface
                         'comment' => 'Catalogs Images'
                     ]
                 );
-            }		
+            }
         }
+
+
+                // Store id
+                if (version_compare($context->getVersion(), '1.0.7', '<')) {
+
+                    if (!$setup->getConnection()->tableColumnExists($setup->getTable('baytalebaa_shops'), 'store_id')) {
+                        $setup->getConnection()->addColumn(
+                            $setup->getTable('baytalebaa_shops'),
+                            'store_id',
+                            [
+                                'type' =>  \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                                'nullable' => true,
+                                'comment' => 'Store id'
+                            ]
+                        );
+                    }
+
+                    if (!$setup->getConnection()->tableColumnExists($setup->getTable('Baytalebaa_Shops_Catalog'), 'store_id')) {
+                        $setup->getConnection()->addColumn(
+                            $setup->getTable('Baytalebaa_Shops_Catalog'),
+                            'store_id',
+                            [
+                                'type' =>  \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                                'nullable' => true,
+                                'comment' => 'Store id'
+                            ]
+                        );
+                    }
+
+                    if (!$setup->getConnection()->tableColumnExists($setup->getTable('Baytalebaa_Shops_SubCatalog'), 'store_id')) {
+                        $setup->getConnection()->addColumn(
+                            $setup->getTable('Baytalebaa_Shops_SubCatalog'),
+                            'store_id',
+                            [
+                                'type' =>  \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                                'nullable' => true,
+                                'comment' => 'Store id'
+                            ]
+                        );
+                    }
+                }
 		$installer->endSetup();
 	}
 }

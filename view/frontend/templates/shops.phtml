@@ -11,11 +11,13 @@
 <?php
     $shop = $block->getSingleData();
     $subcategories = $shop->getSubcategories($shop->getShopCategoryId());
-    $objectManager = \Magento\Framework\App\ObjectManager::getInstance(); 
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
     $categoryObject = $objectManager->create('Magento\Catalog\Model\Category');
     $CategoryTopSellingProducts = $shop->getRelatedCategoryTopSellingProducts();
     $CategoryNewProducts = $shop->getRelatedCategoryNewProducts() ;
     $ShopCatalogs = $shop->getShopCatalogs();
+    $store = $objectManager->get(\Magento\Store\Model\StoreManagerInterface::class)->getStore();
+    $locale = $store->getConfig('general/locale/code');
 ?>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -100,7 +102,10 @@
             </section>
         <?php endif; ?>
 
-        <?php if(count($CategoryTopSellingProducts)): ?>
+        <?php 
+        // echo "<pre>";
+        // var_dump(count($CategoryTopSellingProducts));die;
+        if(count($CategoryTopSellingProducts)): ?>
         <!-- Best Seller Section -->
             <section class="best-seller-section">
                 <h2 class="section-title"><?= $shop->getTitle(); ?> Best Seller</h2>
@@ -123,7 +128,7 @@
                                                 <rect width="18" height="18" fill="white"/>
                                             </clipPath>
                                         </defs>
-                                    </svg> 
+                                    </svg>
                                     <span class="add-to-cart-text">Add To Cart</span>
                                 </button>
                             </div>
@@ -132,8 +137,8 @@
                 </div>
             </section>
         <?php endif; ?>
-        
-        
+
+
         <?php if(count($CategoryNewProducts)): ?>
         <!-- New Arrivals Section -->
             <section class="new-arrivals-section">
@@ -157,7 +162,7 @@
                                             <rect width="18" height="18" fill="white"/>
                                         </clipPath>
                                     </defs>
-                                </svg> 
+                                </svg>
                                 <span class="add-to-cart-text">Add To Cart</span>
                             </button>
                         </div>
@@ -169,7 +174,7 @@
     </div>
     <div class="catalog-content">
         <section class="catalog-section">
-            <div class="catalog-grid">                
+            <div class="catalog-grid">
                 <?php if(count($ShopCatalogs)): ?>
                     <?php foreach ($ShopCatalogs as $catalog) : ?>
                         <div class="catalog-item">
@@ -183,6 +188,33 @@
         </section>
     </div>
 </div>
+<script>
+require(['jquery'], function($) {
+    'use strict';
+    
+    var locale = '<?= $locale ?>';
+    var defaultCssFile = '<?= $block->getViewFileUrl('Baytalebaa_Shops/css/shop_layout.css') ?>';
+    var arCssFile = '<?= $block->getViewFileUrl('Baytalebaa_Shops/css/shop_layout_ar.css') ?>';
+
+    $('head').append(
+        $('<link>')
+            .attr('rel', 'stylesheet')
+            .attr('type', 'text/css')
+            .attr('href', defaultCssFile)
+    );
+    
+    // If locale is Arabic, load the additional Arabic layout CSS
+    if (locale === 'ar_SA' || locale === 'ar') {
+        $('head').append(
+            $('<link>')
+                .attr('rel', 'stylesheet')
+                .attr('type', 'text/css')
+                .attr('href', arCssFile)
+        );
+    }
+});
+</script>
+
 
 <script>
     require(['jquery', 'mgsowlcarousel'], function ($) {
@@ -212,7 +244,7 @@
                     }
                 }
             });
-            
+
             $('.new-arrivals-section .owl-carousel').owlCarousel({
                 items: 4,
                 loop: false,

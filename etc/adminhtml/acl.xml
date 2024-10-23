@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/acl.xsd">
+    <acl>
+        <resources>
+            <administration>
+                <title>Administration</title>
+                <children>
+                    <section id="Baytalebaa_Shops">
+                        <title>Shops Module</title>
+                        <children>
+                            <action id="Baytalebaa_Shops::storeview_page" title="Store View Page" sortOrder="10" />
+                        </children>
+                    </section>
+                </children>
+            </administration>
+        </resources>
+    </acl>
+</config>
