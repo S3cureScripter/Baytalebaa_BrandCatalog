@@ -11,10 +11,11 @@ namespace Baytalebaa\Shops\Model;
 
 use Magento\Framework\Model\AbstractModel;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
-use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
+use Smile\ElasticsuiteCatalog\Model\ResourceModel\Product\Fulltext\CollectionFactory as ProductCollectionFactory;
 use Magento\Sales\Model\ResourceModel\Report\Bestsellers\CollectionFactory as BestsellersCollectionFactory;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Baytalebaa\Shops\Model\ResourceModel\Catalogs\CollectionFactory as CatalogCollectionFactory;
+use Magento\Catalog\Model\CategoryFactory;
 
 class Shops extends AbstractModel
 {
@@ -22,6 +23,7 @@ class Shops extends AbstractModel
     protected $productCollectionFactory;
     protected $bestsellersCollectionFactory;
     protected $catalogCollectionFactory;
+    private $categoryFactory;
 
     
     public function __construct(
@@ -29,12 +31,14 @@ class Shops extends AbstractModel
         \Magento\Framework\Registry $registry,
         CatalogCollectionFactory $catalogCollectionFactory,
         CategoryRepositoryInterface $categoryRepository,
+        CategoryFactory $categoryFactory,
         ProductCollectionFactory $productCollectionFactory,
         BestsellersCollectionFactory $bestsellersCollectionFactory,
         array $data = []
     ) {
         $this->catalogCollectionFactory = $catalogCollectionFactory;
         $this->categoryRepository = $categoryRepository;
+        $this->categoryFactory           = $categoryFactory;
         $this->productCollectionFactory = $productCollectionFactory;
         $this->bestsellersCollectionFactory = $bestsellersCollectionFactory;
         parent::__construct($context, $registry, null, null, $data);
@@ -125,8 +129,8 @@ class Shops extends AbstractModel
             $productCollection = $this->productCollectionFactory->create();
             $productCollection->addCategoryFilter($category)
                 ->addAttributeToSelect(['name', 'price', 'image'])
-                ->addAttributeToFilter('news_from_date', ['lteq' => date('Y-m-d H:i:s')])
-                ->addAttributeToFilter('news_to_date', ['gteq' => date('Y-m-d H:i:s')]);
+                ->addAttributeToSort('entity_id', 'DESC')
+                ->setPageSize(10);
             return $productCollection;
         } catch (NoSuchEntityException $e) {
             return null;
@@ -136,42 +140,40 @@ class Shops extends AbstractModel
     /**
     * Get top-selling products for the related category
     */
+    /**
+ * Get top-selling products for the related category
+ */
+
     public function getRelatedCategoryTopSellingProducts()
     {
-        try {
-            $category = $this->categoryRepository->get($this->getShopBrandId());
-    
-            // Load bestseller product IDs
-            $bestsellers = $this->bestsellersCollectionFactory->create()->setPeriod('month');
-            $bestsellerProductIds = [];
-            foreach ($bestsellers as $item) {
-                $bestsellerProductIds[] = $item->getProductId();
-            }
-    
-            // Create the product collection
+        $category = $this->categoryRepository->get($this->getShopBrandId());
+        if ($category->getData('is_virtual_category')) {
+            $category = $this->categoryFactory->create()->setStoreId(1)->load($this->getShopBrandId());
             $productCollection = $this->productCollectionFactory->create();
-            $productCollection->addAttributeToSelect(['name', 'price', 'image']);
-    
-            if ($category->getUseInRule() == 1) {
-                // Handle virtual category: fetch products based on dynamic conditions
-                $rule = $category->getMatchingProductIds(); // Get product IDs for the virtual category
-                if (!empty($rule)) {
-                    $productCollection->addIdFilter($rule);
-                }
-            } else {
-                // Handle normal category: use addCategoryFilter
-                $productCollection->addCategoryFilter($category);
-            }
-    
-            // Filter by bestseller product IDs
-            $productCollection->addIdFilter($bestsellerProductIds);
-    
+            $productCollection->addCategoryFilter($category);
+            
+            $productCollection->addAttributeToSelect(['name', 'price', 'image']); 
+
+            // Join sales order table to calculate bestseller products
+            $productCollection->getSelect()->join(
+                ['sales' => $productCollection->getTable('sales_order_item')],
+                'e.entity_id = sales.product_id',
+                ['ordered_qty' => 'SUM(sales.qty_ordered)']
+            );
+
+            // Group by product ID to aggregate sales data
+            $productCollection->getSelect()->group('e.entity_id');
+
+            // Order by the number of sales (bestsellers)
+            $productCollection->getSelect()->order('ordered_qty DESC');
+
+            $productCollection->setPageSize(10);
             return $productCollection;
-        } catch (NoSuchEntityException $e) {
-            return null;
+          
+        } else {
+            return [];
         }
     }
-    
 
     /**
     * Get the Shop catalogs

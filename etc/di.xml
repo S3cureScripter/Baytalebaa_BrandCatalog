@@ -99,4 +99,7 @@
 		</arguments>
 	</type>
 
+	<!-- <type name="Baytalebaa\Shops\Model\Shops">
+		<plugin name="save_store_view_data" type="Baytalebaa\Shops\Plugin\SaveStoreViewData" sortOrder="10" />
+	</type> -->
 </config>

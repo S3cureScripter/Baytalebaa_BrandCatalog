@@ -16,17 +16,20 @@ use Baytalebaa\Shops\Model\ResourceModel\Catalogs\CollectionFactory;
 class Main extends Generic implements TabInterface
 {
     protected $_wysiwygConfig;
- 
+    protected $_systemStore;
+
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Framework\Registry $registry,
         \Magento\Framework\Data\FormFactory $formFactory,
         \Magento\Cms\Model\Wysiwyg\Config $wysiwygConfig,
+        \Magento\Store\Model\System\Store $systemStore,
         CollectionFactory $catalogCollectionFactory, // Inject the Shop CollectionFactory
         array $data = []
     ) 
     {
         $this->_wysiwygConfig = $wysiwygConfig;
+        $this->_systemStore = $systemStore;
         $this->_catalogCollectionFactory = $catalogCollectionFactory; // Assign CollectionFactory
         parent::__construct($context, $registry, $formFactory, $data);
     }
@@ -103,6 +106,31 @@ class Main extends Generic implements TabInterface
             ['name' => 'url_slug', 'label' => __('URL Slug'), 'title' => __('URL Slug'), 'required' => true]
         );
         
+        // Add store view field
+        if (!$this->_storeManager->isSingleStoreMode()) {
+            $field = $fieldset->addField(
+                'store_id',
+                'multiselect',
+                [
+                    'name' => 'stores[]',
+                    'label' => __('Store View'),
+                    'title' => __('Store View'),
+                    'required' => true,
+                    'values' => $this->_systemStore->getStoreValuesForForm(false, true),
+                ]
+            );
+            $renderer = $this->getLayout()->createBlock(
+                \Magento\Backend\Block\Store\Switcher\Form\Renderer\Fieldset\Element::class
+            );
+            $field->setRenderer($renderer);
+        } else {
+            $fieldset->addField(
+                'store_id',
+                'hidden',
+                ['name' => 'stores[]', 'value' => $this->_storeManager->getStore(true)->getId()]
+            );
+            $model->setStoreId($this->_storeManager->getStore(true)->getId());
+        }
         // $fieldset->addType('ImageMultible', 'Baytalebaa\Shops\Block\Adminhtml\Subcatalogs\Helper\ImageMultible');
         // $fieldset->addField(
         //     'images',
@@ -148,7 +176,11 @@ class Main extends Generic implements TabInterface
                 'config'    => $this->_wysiwygConfig->getConfig(),
                 'wysiwyg' => true
             ]
-        );       
+        );     
+        // Set form values
+        if (!$model->getId()) {
+            $model->setData('store_id', '0');
+        }
         $form->setValues($model->getData());
         $this->setForm($form);
         return parent::_prepareForm();

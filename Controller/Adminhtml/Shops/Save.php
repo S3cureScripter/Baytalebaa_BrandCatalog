@@ -100,6 +100,10 @@ class Save extends \Baytalebaa\Shops\Controller\Adminhtml\Shops
                         throw new \Magento\Framework\Exception\LocalizedException(__('The wrong item is specified.'));
                     }
                 }
+                // Convert storeviews array back to a comma-separated string
+                if (isset($data['stores'])) {
+                    $data['store_id'] = implode(',', $data['stores']);
+                }
                 $model->setData($data);
                 $session = $this->_objectManager->get('Magento\Backend\Model\Session');
                 $session->setPageData($model->getData());

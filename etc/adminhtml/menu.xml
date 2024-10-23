@@ -10,7 +10,7 @@
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Backend/etc/menu.xsd">
     <menu>
-        <add id="baytalebaa_shops::core" title="Shops" module="Baytalebaa_Shops" sortOrder="90" resource="Baytalebaa_Shops::sample"/>
+        <add id="baytalebaa_shops::core" title="Shops" module="Baytalebaa_Shops" sortOrder="50" resource="Baytalebaa_Shops::sample"/>
         <add id="Baytalebaa_Shops::shop" 
              title="Shops" 
              module="Baytalebaa_Shops" 
