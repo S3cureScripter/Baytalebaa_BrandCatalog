@@ -16,7 +16,6 @@
 	    <css src="Baytalebaa_Shops::css/shop_shops_styles.css" />
 	    <!-- <css src="Baytalebaa_Shops::css/shop_catalogs_styles.css" /> -->
 	    <css src="Baytalebaa_Shops::css/shop_catalogs_styles.css" />
-
 	    <!-- <script src="Baytalebaa_Shops::js/custom_shops.js"/> -->
 	</head>
     <body>
