@@ -96,12 +96,9 @@ class Router implements RouterInterface
                     // Validate catalog exists for this shop
                     $catalog = $this->catalogFactory->create()->getCollection()
                         ->addFieldToFilter('url_slug', $catalogSlug)
-                        ->addFieldToFilter('shop', $shop->getId())
+                        // ->addFieldToFilter('shop', $shop->getId())
                         ->addFieldToFilter('store_id', $storeId)
                         ->getFirstItem();
-                        if (!$catalog->getId()) {
-                            return null;
-                        }
                         $debug_response = [
                             'debug_response - match - shopSlug - subcatalogSlug/catalog' => [
                                 'identifierParts' => $identifierParts,
@@ -114,6 +111,11 @@ class Router implements RouterInterface
                         // echo json_encode($debug_response, JSON_PRETTY_PRINT);
                         // echo '<hr>';
                         // echo '</pre>';
+                        if (!$catalog->getId()) {
+                            return null;
+                        }
+                        // echo "match -> shopSlug ->subcatalogSlug - not null";
+
 
                     // Validate subcatalog exists for this catalog
                     $subcatalog = $this->subcatalogFactory->create()->getCollection()
@@ -137,7 +139,7 @@ class Router implements RouterInterface
                         return null;
                     }
 
-                    $this->setRequestPath($request, 'subcatalog', [
+                    $this->setRequestPath($request, 'subcatalogs', [
                         'shop' => $shop->getId(),
                         'catalog' => $catalog->getId(),
                         'subcatalog' => $subcatalog->getId()
@@ -158,7 +160,7 @@ class Router implements RouterInterface
                             'url_slug' => $catalogSlug,
                             'store_id' => $shop->getId(),
                             'shop' => $storeId,
-                            'catalog' => $catalog
+                            '$catalog->getId()' => $catalog->getId()
                         ]
                     ];
                     // echo '<pre>';
@@ -171,7 +173,7 @@ class Router implements RouterInterface
                         return null;
                     }
 
-                    $this->setRequestPath($request, 'catalog', [
+                    $this->setRequestPath($request, 'catalogs', [
                         'shop' => $shop->getId(),
                         'catalog' => $catalog->getId()
                     ]);
