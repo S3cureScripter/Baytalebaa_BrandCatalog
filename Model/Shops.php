@@ -55,6 +55,10 @@ class Shops extends AbstractModel
     {
         return $this->getData('shop_brand_id');
     }
+    public function getStoreId()
+    {
+        return $this->getData('store_id');
+    }
 
     public function getTitle()
     {
@@ -144,36 +148,36 @@ class Shops extends AbstractModel
  * Get top-selling products for the related category
  */
 
-    public function getRelatedCategoryTopSellingProducts()
-    {
-        $category = $this->categoryRepository->get($this->getShopBrandId());
-        if ($category->getData('is_virtual_category')) {
-            $category = $this->categoryFactory->create()->setStoreId(1)->load($this->getShopBrandId());
-            $productCollection = $this->productCollectionFactory->create();
-            $productCollection->addCategoryFilter($category);
-            
-            $productCollection->addAttributeToSelect(['name', 'price', 'image']); 
+ public function getRelatedCategoryTopSellingProducts()
+ {
+     $category = $this->categoryRepository->get($this->getShopBrandId());
+     if ($category->getData('is_virtual_category')) {
+         $category = $this->categoryFactory->create()->setStoreId($this->getStoreId())->load($this->getShopBrandId());
+         $productCollection = $this->productCollectionFactory->create();
+         $productCollection->addCategoryFilter($category);
+         
+         $productCollection->addAttributeToSelect(['name', 'price', 'image']); 
 
-            // Join sales order table to calculate bestseller products
-            $productCollection->getSelect()->join(
-                ['sales' => $productCollection->getTable('sales_order_item')],
-                'e.entity_id = sales.product_id',
-                ['ordered_qty' => 'SUM(sales.qty_ordered)']
-            );
+         // Join sales order table to calculate bestseller products
+         $productCollection->getSelect()->join(
+             ['sales' => $productCollection->getTable('sales_order_item')],
+             'e.entity_id = sales.product_id',
+             ['ordered_qty' => 'SUM(sales.qty_ordered)']
+         );
 
-            // Group by product ID to aggregate sales data
-            $productCollection->getSelect()->group('e.entity_id');
+         // Group by product ID to aggregate sales data
+         $productCollection->getSelect()->group('e.entity_id');
 
-            // Order by the number of sales (bestsellers)
-            $productCollection->getSelect()->order('ordered_qty DESC');
+         // Order by the number of sales (bestsellers)
+         $productCollection->getSelect()->order('ordered_qty DESC');
 
-            $productCollection->setPageSize(10);
-            return $productCollection;
-          
-        } else {
-            return [];
-        }
-    }
+         $productCollection->setPageSize(10);
+         return $productCollection;
+       
+     } else {
+         return [];
+     }
+ }
 
     /**
     * Get the Shop catalogs
@@ -181,9 +185,9 @@ class Shops extends AbstractModel
     public function getShopCatalogs()
     {
         $Catalogs = $this->catalogCollectionFactory->create()
-            ->addFieldToFilter('catalog_id', $this->getId())
+            ->addFieldToFilter('Catalog_shop_id', $this->getId())
+            ->addFieldToFilter('store_id', $this->getStoreId())
             ->addFieldToFilter('status', 1); // Optional: Filter by status if needed
-
         return $Catalogs;
     }
     //-----------------------------------------------
