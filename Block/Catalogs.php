@@ -47,7 +47,7 @@ class Catalogs extends \Magento\Framework\View\Element\Template
         // echo "0x13v: ".$singleData->getTitle();
         // var_dump($singleData->debug());die;
         if($singleData->getCatalogsId() || $singleData['catalog_id'] && $singleData->getStatus() == 1){
-            $this->_catalogsid = $id;
+            $this->_catalogsid = $_shopid;
             return $singleData;
         }else{
             return false;

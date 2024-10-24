@@ -38,9 +38,11 @@ class Subcatalogs extends \Magento\Framework\View\Element\Template
 
     public function getSingleData()
     {
-        $id = $this->getRequest()->getParam('shop');
+        $_shopid = $this->getRequest()->getParam('shop');
+        $_catalogid = $this->getRequest()->getParam('catalog');
+        $_subcatalogid = $this->getRequest()->getParam('subcatalog');
         $catalogs = $this->_subcatalogs->create();
-        $singleData = $catalogs->load($id);
+        $singleData = $catalogs->load($_subcatalogid);
         if($singleData->getsubCatalogId() || $singleData['subcatalog_id'] && $singleData->getStatus() == 1){
             return $singleData;
         }else{
