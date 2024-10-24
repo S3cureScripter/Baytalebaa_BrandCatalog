@@ -9,6 +9,8 @@
  */
 ?>
 <?php
+// echo "SHOPS";
+// die;
     $shop = $block->getSingleData();
     $subcategories = $shop->getSubcategories($shop->getShopCategoryId());
     $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
@@ -18,10 +20,11 @@
     $ShopCatalogs = $shop->getShopCatalogs();
     $store = $objectManager->get(\Magento\Store\Model\StoreManagerInterface::class)->getStore();
     $locale = $store->getConfig('general/locale/code');
+    $formKey = $block->getFormKey();
 ?>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
+<input type="hidden" name="form_key" value="<?php echo $formKey; ?>">
 <!-- <link rel="stylesheet" href="layout.css">
 <link rel="stylesheet" href="overview_styles.css">
 <link rel="stylesheet" href="catalog_styles.css"> -->
@@ -49,13 +52,14 @@
 <input type="radio" class="catalog-toggle" name="tab-toggle" id="catalog-tab">
 <!-- Tabs Navigation Section -->
 <section class="tabs-nav">
-    <label for="overview-tab" class="nav-button overview-toggle">Overview</label>
-    <label for="catalog-tab" class="nav-button catalog-toggle">Catalogs</label>
-    <label for="questions-tab" class="nav-button questions-toggle">Questions</label>
-    <label for="reviews-tab" class="nav-button reviews-toggle">Reviews</label>
-    <label for="ideabooks-tab" class="nav-button ideabooks-toggle">Ideabooks</label>
-    <label for="activity-tab" class="nav-button activity-toggle">Activity</label>
+    <label for="overview-tab" class="nav-button overview-toggle"><?= __("Overview") ?></label>
+    <label for="catalog-tab" class="nav-button catalog-toggle"><?= __("Catalogs") ?></label>
+    <label for="questions-tab" class="nav-button questions-toggle"><?= __("Questions") ?></label>
+    <label for="reviews-tab" class="nav-button reviews-toggle"><?= __("Reviews") ?></label>
+    <label for="ideabooks-tab" class="nav-button ideabooks-toggle"><?= __("Ideabooks") ?></label>
+    <label for="activity-tab" class="nav-button activity-toggle"><?= __("Activity") ?></label>
 </section>
+
 
 <div class="tab-container">
     <div class="overview-content">
@@ -66,27 +70,28 @@
                 <div class="info-description">
                     <?= $shop->getContent(); ?>
                 </div>
-                <div class="info-subtitle">Certifications And Awards</div>
-                    <?= $shop->getCertificationsAndAwards(); ?>
-                </div>
+                <div class="info-subtitle"><?= __("Certifications And Awards") ?></div>
+                <?= $shop->getCertificationsAndAwards(); ?>
+            </div>
 
             <div class="info-column">
-                <div class="info-title">Shop <?= $shop->getTitle(); ?> On Bayt Alebaa</div>
+                <div class="info-title"><?= __("Shop") . " " . $shop->getTitle() . " " . __("On Bayt Alebaa") ?></div>
                 <div class="info-description">
                     <?= $shop->getShopOn(); ?>
                 </div>
-                <div class="info-subtitle">Service Provided</div>
+                <div class="info-subtitle"><?= __("Service Provided") ?></div>
                 <div class="info-text"><?= $shop->getServiceProvided(); ?></div>
 
-                <div class="info-subtitle">Areas Covered</div>
+                <div class="info-subtitle"><?= __("Areas Covered") ?></div>
                 <div class="info-text"><?= $shop->getAreasCovered(); ?></div>
             </div>
         </section>
 
+
         <!-- Category Section -->
         <?php if(count($subcategories)): ?>
          <section class="category-section">
-            <h2 class="category-title">Shop <?= $shop->getTitle(); ?> By Category</h2>
+            <h2 class="category-title"><?= __("Shop") . " " . $shop->getTitle() . " " . __("By Category") ?></h2>
                 <div class="category-slider">
                     <div class="category-grid">
                         <?php foreach ($subcategories as $subcategory) : ?>
@@ -104,14 +109,14 @@
 
         <?php 
         // echo "<pre>";
-        // var_dump(count($CategoryTopSellingProducts));die;
+        // var_dump($CategoryTopSellingProducts);die;
         if(count($CategoryTopSellingProducts)): ?>
         <!-- Best Seller Section -->
             <section class="best-seller-section">
-                <h2 class="section-title"><?= $shop->getTitle(); ?> Best Seller</h2>
+                <h2 class="section-title"><?= $shop->getTitle(); ?> <?= __("Best Seller") ?></h2>
                 <div class="owl-carousel owl-theme">
                 <?php foreach ($CategoryTopSellingProducts as $product) : ?>
-                        <div class="item">
+                        <div class="item"  data-product-id="<?php echo $product->getId(); ?>">
                             <img class="item-image" src="<?= ($product->getImageUrl())?$product->getImageUrl():"/media/favicon/stores/2/baytalebaa-logo.png"?>" alt="<?php echo $product->getName(); ?>"/>
                             <div class="item-details">
                                 <p class="product-name"><?php echo $product->getName(); ?></p>
@@ -129,7 +134,7 @@
                                             </clipPath>
                                         </defs>
                                     </svg>
-                                    <span class="add-to-cart-text">Add To Cart</span>
+                                    <span class="add-to-cart-text"><?= __("Add To Cart") ?></span>
                                 </button>
                             </div>
                         </div>
@@ -142,10 +147,10 @@
         <?php if(count($CategoryNewProducts)): ?>
         <!-- New Arrivals Section -->
             <section class="new-arrivals-section">
-                <h2 class="section-title">New Arrivals from <?= $shop->getTitle(); ?></h2>
+                <h2 class="section-title"><?= __("New Arrivals from") ?> <?= $shop->getTitle(); ?></h2>
                 <div class="owl-carousel owl-theme">
                 <?php foreach ($CategoryNewProducts as $product) : ?>
-                    <div class="item">
+                    <div class="item"  data-product-id="<?php echo $product->getId(); ?>">
                         <img class="item-image" src="<?= ($product->getImageUrl())?$product->getImageUrl():'/media/favicon/stores/2/baytalebaa-logo.png'?>" alt="<?php echo $product->getName(); ?>"/>
                         <div class="item-details">
                             <p class="product-name"><?php echo $product->getName(); ?></p>
@@ -163,7 +168,7 @@
                                         </clipPath>
                                     </defs>
                                 </svg>
-                                <span class="add-to-cart-text">Add To Cart</span>
+                                <span class="add-to-cart-text"><?= __("Add To Cart") ?></span>
                             </button>
                         </div>
                     </div>
@@ -188,6 +193,82 @@
         </section>
     </div>
 </div>
+<script>
+    require([
+    'jquery',
+    'mage/url',
+    'Magento_Catalog/js/product/view/product-info',
+    'Magento_Customer/js/customer-data',
+    'mage/translate'
+], function($, url, productInfo, customerData, $t) {
+    'use strict';
+
+    // Function to show messages
+    function showMessage(message, type) {
+        $('body').notification('clear')
+            .notification('add', {
+                error: type === 'error',
+                message: message,
+                messageTemplate: '<div data-ui-id="messages-message-' + type + '"><div>' + message + '</div></div>',
+                type: type,
+                insertMethod: function(message) {
+                    var $wrapper = $('<div/>').html(message);
+                    $('.page.messages').append($wrapper);
+                }
+            });
+    }
+
+    // Function to handle add to cart
+    function addToCart(productId, qty) {
+        $.ajax({
+            url: url.build('checkout/cart/add'),
+            data: {
+                product: productId,
+                qty: qty || 1,
+                form_key: $.cookie('form_key')
+            },
+            type: 'post',
+            dataType: 'json',
+            beforeSend: function() {
+                $('body').trigger('processStart');
+            },
+            success: function(response) {
+                if (response.success) {
+                    // Update mini cart
+                    var sections = ['cart'];
+                    customerData.invalidate(sections);
+                    customerData.reload(sections, true);
+                    
+                    showMessage($t('Product added to cart successfully'), 'success');
+                } else {
+                    showMessage(response.message || $t('Error adding product to cart'), 'error');
+                }
+            },
+            error: function() {
+                showMessage($t('Error adding product to cart'), 'error');
+            },
+            complete: function() {
+                $('body').trigger('processStop');
+            }
+        });
+    }
+
+    // Bind click event to add to cart buttons
+    $(document).on('click', '.add-to-cart', function(e) {
+        e.preventDefault();
+        var $button = $(this);
+        var $item = $button.closest('.item');
+        var productId = $item.data('product-id'); // Make sure to add this data attribute to your product items
+        
+        if (!productId) {
+            showMessage($t('Product ID not found'), 'error');
+            return;
+        }
+
+        addToCart(productId);
+    });
+});
+</script>
 <script>
 require(['jquery'], function($) {
     'use strict';

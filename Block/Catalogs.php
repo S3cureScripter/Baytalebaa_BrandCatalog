@@ -40,9 +40,10 @@ class Catalogs extends \Magento\Framework\View\Element\Template
    
     public function getSingleData()
     {
-        $id = $this->getRequest()->getParam('shop');
+        $_shopid = $this->getRequest()->getParam('shop');
+        $_catalogid = $this->getRequest()->getParam('catalog');
         $catalogs = $this->_catalogs->create();
-        $singleData = $catalogs->load($id);
+        $singleData = $catalogs->load($_catalogid);
         // echo "0x13v: ".$singleData->getTitle();
         // var_dump($singleData->debug());die;
         if($singleData->getCatalogsId() || $singleData['catalog_id'] && $singleData->getStatus() == 1){
